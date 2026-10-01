@@ -1,42 +1,12 @@
-# .
+# Учебный проект по предметной области «Авиакомпания»
 
-This template should help get you started developing with Vue 3 in Vite.
+## Описание предметной области
 
-## Recommended IDE Setup
+На основе выделенных границ автоматизации была спроектирована концептуальная модель базы данных, состоящая из 4 основных информационных объектов (сущностей). Логика их взаимодействия и бизнес-правила системы описаны ниже:
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
+- Пассажир (Passenger) и Билет (Ticket):
+  Сущность Passenger хранит персональные и контактные данные клиентов авиакомпании Nordline (ФИО, паспорт, телефон, email, карта). Между сущностями установлена связь «один ко многим» (1:M). Один пассажир может оформить множество билетов на разные рейсы или даты (PassengerId в таблице Ticket ссылается на Id пассажира). При этом каждый конкретный билет выписывается строго на одного человека.
+- Рейс (Trip) и Билет (Ticket):
+  Сущность Trip содержит информацию о маршрутной сети авиакомпании: номер рейса, пункты вылета и назначения, время и модель самолета. Между Trip и Ticket организована связь «один ко многим» (1:M) через внешний ключ TripId. На один конкретный авиарейс может быть продано множество билетов (в пределах вместимости самолета), но сам билет привязан только к одному рейсу.
+- Билет (Ticket) и Посадочный талон (TripPass):
+  Сущность TripPass отвечает за этап регистрации пассажира на рейс и выдачу посадочного талона с указанием конкретного кресла (SeatNumber) и выхода на посадку (Gate). Связь реализована через внешний ключ TicketId. В рамках текущей модели один билет однозначно определяет один посадочный талон на беспосадочный перелет.
