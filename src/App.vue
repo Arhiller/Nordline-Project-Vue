@@ -2,49 +2,71 @@
 import { DatePicker } from 'primevue';
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
+
+const isOpen = ref(false)
+
+function openModalWindow() {
+  isOpen.value = !isOpen.value
+  if (isOpen.value) {
+    document.body.style.overflow = "hidden"
+  } else {
+    document.body.style.overflow = ""
+  }
+}
+
 </script>
 
 <template>
-    <div class="grid-container">
-            <div class="head-bar">
-                <h1>Nordline</h1>
-            </div>
-            <div class="account-zone">
-                <button id="register-button">Зарегистрироваться</button>
-                <button id="enter-button">Войти</button>
-            </div>
-            <div class="order-bar">
-                <input list="data-list" placeholder="Откуда">
-                <datalist id="data-list">
+  <div class="modal-overlay" v-if="isOpen">
+    <div class="enter-modal-window" v-if="isOpen">
+      <div class="close-zone-modal">
 
-                </datalist>
-                <input list="data-list" placeholder="Куда">
-                <datalist id="data-list">
+      </div>
+      <div class="input-zone-modal">
 
-                </datalist>
-                <DatePicker dateFormat="dd.mm.yy"></DatePicker>
-                
-                <input>
-                <datalist id="data-list">
+      </div>
+    </div>
+  </div>
+  <div class="grid-container">
+    <div class="head-bar">
+      <h1>Nordline</h1>
+    </div>
+    <div class="account-zone">
+      <button id="register-button">Зарегистрироваться</button>
+      <button id="enter-button" @click="openModalWindow">Войти</button>
+    </div>
+    <div class="order-bar">
+      <input list="data-list" placeholder="Откуда">
+      <datalist id="data-list">
 
-                </datalist>
-                <button>Купить</button>
-            </div>
-            <div class="advertisment-bar">
-                <div class="advertisment-item">
+      </datalist>
+      <input list="data-list" placeholder="Куда">
+      <datalist id="data-list">
 
-                </div>
-                 <div class="advertisment-item">
+      </datalist>
+      <DatePicker dateFormat="dd.mm.yy"></DatePicker>
 
-                </div>
-                 <div class="advertisment-item">
+      <input>
+      <datalist id="data-list">
 
-                </div>
-            </div>
-            <div class="marketing-bar">
+      </datalist>
+      <button>Купить</button>
+    </div>
+    <div class="advertisment-bar">
+      <div class="advertisment-item">
 
-            </div>
-        </div>
+      </div>
+      <div class="advertisment-item">
+
+      </div>
+      <div class="advertisment-item">
+
+      </div>
+    </div>
+    <div class="marketing-bar">
+
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -83,12 +105,184 @@ import { useRouter } from 'vue-router'
 
   --button-hover-color: #e8f3ec;
   --border-style: 2px solid var(--border-color);
+
+  /* =========================================================
+     ФОН (доп. оттенки)
+     ========================================================= */
+  --bg-soft: #fdfaf4;
+  /* чуть светлее основного */
+  --bg-base: #fdf6ec;
+  /* = bg-color, для единообразия */
+  --bg-strong: #f5ead9;
+  /* заметно темнее, для чередования полос */
+  --bg-muted: #efe4d3;
+  /* самый тёмный из светлых, для разделителей */
+
+  /* =========================================================
+     ПОВЕРХНОСТИ (карточки, панели)
+     ========================================================= */
+  --surface-soft: #ffffff;
+  /* = surface-color */
+  --surface-base: #fdfaf4;
+  /* = surface-alt */
+  --surface-strong: #f7f1e6;
+  /* для вложенных блоков, полей */
+  --surface-sunken: #f0e8da;
+  /* «утопленная» — фон инпутов в покое */
+
+  /* =========================================================
+     ГРАНИЦЫ — три градации + акцентные
+     ========================================================= */
+  --border-soft: #efe7d9;
+  /* едва видимая, для разделителей */
+  --border-base: #e6dfd3;
+  /* = border-color, основная */
+  --border-strong: #cfc4b2;
+  /* заметная, для активных элементов */
+
+  --border-focus: #a8d5ba;
+  /* рамка при фокусе (= accent-color) */
+  --border-invalid: #e8a5a5;
+  /* ошибка, мягкий красный */
+
+  /* Готовые shorthand-значения */
+  --border-style-soft: 1px solid var(--border-soft);
+  --border-style-base: 2px solid var(--border-base);
+  --border-style-strong: 2px solid var(--border-strong);
+
+  /* =========================================================
+     ТЕКСТ — три градации + служебные
+     ========================================================= */
+  --text-soft: #b0b0b0;
+  /* самый бледный: подсказки, disabled */
+  --text-muted: #8a8a8a;
+  /* = из базы, для плейсхолдеров */
+  --text-base: #4a4a4a;
+  /* = text-color, основной */
+  --text-strong: #2f2d2a;
+  /* заголовки, акценты */
+  --text-on-accent: #2f2d2a;
+  /* текст на цветных кнопках */
+
+  --text-link: #6fae8c;
+  /* ссылки в тексте */
+  --text-link-hover: #4f8f6d;
+  /* ссылки при наведении */
+
+  /* =========================================================
+     ИНПУТЫ
+     ========================================================= */
+  --input-bg: #fdfaf4;
+  --input-bg-hover: #ffffff;
+  --input-bg-focus: #ffffff;
+  --input-bg-disabled: #f0e8da;
+
+  --input-border: var(--border-base);
+  --input-border-hover: var(--border-strong);
+  --input-border-focus: var(--accent-color);
+
+  --input-text: var(--text-base);
+  --input-placeholder: var(--text-muted);
+  --input-text-disabled: var(--text-soft);
+
+  --input-shadow-focus: 0 0 0 4px rgba(168, 213, 186, 0.35);
+
+  /* =========================================================
+     КНОПКИ
+     ========================================================= */
+  /* Основная (зелёная) */
+  --btn-primary-bg: #a8d5ba;
+  --btn-primary-bg-hover: #8dc4a3;
+  --btn-primary-bg-active: #75b28e;
+  --btn-primary-text: #2f2d2a;
+  --btn-primary-border: transparent;
+
+  /* Вторичная (персиковая) */
+  --btn-secondary-bg: #ffd6a5;
+  --btn-secondary-bg-hover: #ffc477;
+  --btn-secondary-bg-active: #f5b25e;
+  --btn-secondary-text: #2f2d2a;
+
+  /* Нейтральная (тихая) */
+  --btn-neutral-bg: #f7f1e6;
+  --btn-neutral-bg-hover: #efe7d9;
+  --btn-neutral-bg-active: #e6dfd3;
+  --btn-neutral-text: #4a4a4a;
+
+  /* Отключённая */
+  --btn-disabled-bg: #efe7d9;
+  --btn-disabled-text: #b0b0b0;
+
+  --btn-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+  --btn-shadow-hover: 0 6px 14px rgba(180, 160, 140, 0.28);
+
+  /* =========================================================
+     СОСТОЯНИЯ (статусы)
+     ========================================================= */
+  --state-success-bg: #e8f3ec;
+  --state-success-text: #4f8f6d;
+  --state-success-border: #a8d5ba;
+
+  --state-warning-bg: #ffeeda;
+  --state-warning-text: #b57f2f;
+  --state-warning-border: #ffd6a5;
+
+  --state-error-bg: #f8e0e0;
+  --state-error-text: #a82626;
+  --state-error-border: #e8a5a5;
+
+  --state-info-bg: #e6e9f7;
+  --state-info-text: #4a5578;
+  --state-info-border: #b7c0e0;
+
+  /* =========================================================
+     РАЗНОЕ
+     ========================================================= */
+  --divider-color: var(--border-soft);
+  --overlay-color: rgba(63, 61, 86, 0.35);
+  /* затемнение под модалками */
+  --scrollbar-thumb: #d9cfbe;
+  --scrollbar-track: #f5ead9;
+
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.4s ease;
+  --transition-slow: 0.6s ease;
+}
+
+.enter-modal-window .close-zone-modal {
+  display: flex;
+  justify-content: flex-end;
+
+  border-bottom: 2px solid var(--border-color);
+}
+
+.enter-modal-window {
+  display: grid;
+  grid-template-rows: 10% auto;
+
+  background-color: var(--bg-color);
+  width: 80%;
+  height: 80%;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .grid-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 10% auto auto auto;
+  grid-template-rows: 10% auto auto repeat(4, 250px);
   gap: 20px;
   padding: 24px;
   min-height: 100vh;
@@ -270,10 +464,10 @@ import { useRouter } from 'vue-router'
 }
 
 .marketing-bar {
-  grid-row: 4;
+  grid-row: 5 / -1;
   grid-column: 1 / -1;
 
-  min-height: 110px;
+  height: 100%;
   width: 100%;
 
   background: var(--dark-panel);
