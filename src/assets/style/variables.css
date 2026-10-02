@@ -1,0 +1,169 @@
+:global(:root) {
+  --bg-color: #fdf6ec;
+  --surface-color: #ffffff;
+  --surface-alt: #fdfaf4;
+  --text-color: #4a4a4a;
+  --text-muted: #8a8a8a;
+
+  --accent-color: #a8d5ba;
+  --accent-hover: #8dc4a3;
+  --accent-2: #ffd6a5;
+  --accent-2-hover: #ffc477;
+
+  --tile-1-start: #e8f3ec;
+  --tile-2-start: #ffeeda;
+  --tile-3-start: #e6e9f7;
+
+  --dark-panel: #3f3d56;
+  --border-color: #e6dfd3;
+
+  --shadow-soft: 0 6px 18px rgba(180, 160, 140, 0.15);
+  --shadow-hover: 0 10px 24px rgba(180, 160, 140, 0.28);
+  --shadow-focus: 0 0 0 4px rgba(168, 213, 186, 0.35);
+
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+
+  --button-hover-color: #e8f3ec;
+  --border-style: 2px solid var(--border-color);
+
+  /* Фон */
+  --bg-soft: #fdfaf4;
+  --bg-base: #fdf6ec;
+  --bg-strong: #f5ead9;
+  --bg-muted: #efe4d3;
+
+  /* Поверхности */
+  --surface-soft: #ffffff;
+  --surface-base: #fdfaf4;
+  --surface-strong: #f7f1e6;
+  --surface-sunken: #f0e8da;
+
+  /* Границы */
+  --border-soft: #efe7d9;
+  --border-base: #e6dfd3;
+  --border-strong: #cfc4b2;
+  --border-focus: #a8d5ba;
+  --border-invalid: #e8a5a5;
+
+  --border-style-soft: 1px solid var(--border-soft);
+  --border-style-base: 2px solid var(--border-base);
+  --border-style-strong: 2px solid var(--border-strong);
+
+  /* Текст */
+  --text-soft: #b0b0b0;
+  --text-muted: #8a8a8a;
+  --text-base: #4a4a4a;
+  --text-strong: #2f2d2a;
+  --text-on-accent: #2f2d2a;
+  --text-link: #6fae8c;
+  --text-link-hover: #4f8f6d;
+
+  /* Инпуты */
+  --input-bg: #fdfaf4;
+  --input-bg-hover: #ffffff;
+  --input-bg-focus: #ffffff;
+  --input-bg-disabled: #f0e8da;
+  --input-border: var(--border-base);
+  --input-border-hover: var(--border-strong);
+  --input-border-focus: var(--accent-color);
+  --input-text: var(--text-base);
+  --input-placeholder: var(--text-muted);
+  --input-text-disabled: var(--text-soft);
+  --input-shadow-focus: 0 0 0 4px rgba(168, 213, 186, 0.35);
+
+  /* Базовые кнопки */
+  --btn-primary-bg: #a8d5ba;
+  --btn-primary-bg-hover: #8dc4a3;
+  --btn-primary-bg-active: #75b28e;
+  --btn-primary-text: #2f2d2a;
+  --btn-primary-border: transparent;
+
+  --btn-secondary-bg: #ffd6a5;
+  --btn-secondary-bg-hover: #ffc477;
+  --btn-secondary-bg-active: #f5b25e;
+  --btn-secondary-text: #2f2d2a;
+
+  --btn-neutral-bg: #f7f1e6;
+  --btn-neutral-bg-hover: #efe7d9;
+  --btn-neutral-bg-active: #e6dfd3;
+  --btn-neutral-text: #4a4a4a;
+
+  --btn-disabled-bg: #efe7d9;
+  --btn-disabled-text: #b0b0b0;
+
+  --btn-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+  --btn-shadow-hover: 0 6px 14px rgba(180, 160, 140, 0.28);
+
+  /* Состояния */
+  --state-success-bg: #e8f3ec;
+  --state-success-text: #4f8f6d;
+  --state-success-border: #a8d5ba;
+
+  --state-warning-bg: #ffeeda;
+  --state-warning-text: #b57f2f;
+  --state-warning-border: #ffd6a5;
+
+  --state-error-bg: #f8e0e0;
+  --state-error-text: #a82626;
+  --state-error-border: #e8a5a5;
+
+  --state-info-bg: #e6e9f7;
+  --state-info-text: #4a5578;
+  --state-info-border: #b7c0e0;
+
+  /* Разное */
+  --divider-color: var(--border-soft);
+  --overlay-color: rgba(63, 61, 86, 0.35);
+  --scrollbar-thumb: #d9cfbe;
+  --scrollbar-track: #f5ead9;
+
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.4s ease;
+  --transition-slow: 0.6s ease;
+
+  /* Расширенные кнопки */
+  --btn-danger-bg: #f2b8b8;
+  --btn-danger-bg-hover: #e79c9c;
+  --btn-danger-bg-active: #d97f7f;
+  --btn-danger-text: #4a1f1f;
+
+  --btn-success-bg: #b8e0c4;
+  --btn-success-bg-hover: #9ed1ae;
+  --btn-success-bg-active: #82c096;
+  --btn-success-text: #24402f;
+
+  --btn-warning-bg: #ffe0a8;
+  --btn-warning-bg-hover: #f7cf85;
+  --btn-warning-bg-active: #eabd66;
+  --btn-warning-text: #4a3a17;
+
+  --btn-info-bg: #c5cdec;
+  --btn-info-bg-hover: #aeb8e0;
+  --btn-info-bg-active: #97a2d4;
+  --btn-info-text: #2a2f4a;
+
+  --btn-ghost-bg: transparent;
+  --btn-ghost-bg-hover: #f0e8da;
+  --btn-ghost-bg-active: #e6dfd3;
+  --btn-ghost-text: #4a4a4a;
+  --btn-ghost-border: #cfc4b2;
+
+  --icon-btn-size: 32px;
+  --icon-btn-radius: 50%;
+  --icon-btn-bg: #f0e8da;
+  --icon-btn-bg-hover: #e6dfd3;
+  --icon-btn-bg-active: #d9cfbe;
+  --icon-btn-text: #4a4a4a;
+
+  --btn-disabled-opacity: 0.55;
+  --btn-focus-ring-color: rgba(168, 213, 186, 0.45);
+
+  --btn-padding-y: 10px;
+  --btn-padding-x: 18px;
+  --btn-radius: var(--radius-sm);
+  --btn-font-size: 16px;
+  --btn-font-size-sm: 14px;
+  --btn-font-size-lg: 18px;
+}

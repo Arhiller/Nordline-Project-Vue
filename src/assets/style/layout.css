@@ -1,0 +1,12 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 10% auto auto repeat(4, 250px);
+  gap: 20px;
+  padding: 24px;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  background: var(--bg-color);
+  color: var(--text-color);
+}

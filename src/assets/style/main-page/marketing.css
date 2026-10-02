@@ -1,0 +1,11 @@
+.marketing-bar {
+  grid-row: 5 / -1;
+  grid-column: 1 / -1;
+
+  height: 100%;
+  width: 100%;
+
+  background: var(--dark-panel);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}

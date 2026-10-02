@@ -1,0 +1,39 @@
+.account-zone {
+  grid-row: 1;
+  grid-column: 4;
+  justify-self: end;
+  align-self: start;
+  z-index: 2;
+
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+
+  background: var(--surface-color);
+  border: var(--border-style);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.account-zone button {
+  padding: 10px 16px;
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--text-color);
+  background: var(--accent-color);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.4s ease;
+}
+
+.account-zone button:hover {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-hover);
+}
+
+.account-zone button:active {
+  transform: scale(0.95);
+}
