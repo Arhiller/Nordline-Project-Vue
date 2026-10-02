@@ -4,13 +4,34 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 
 const isOpen = ref(false)
+const isOpenEnter = ref(false)
+const isOpenRegister = ref(false)
+const isOpenBuy = ref(false)
 
-function openModalWindow() {
+function openModalWindow(arg: number) {
   isOpen.value = !isOpen.value
   if (isOpen.value) {
     document.body.style.overflow = "hidden"
   } else {
     document.body.style.overflow = ""
+    isOpenEnter.value = false
+    isOpenRegister.value = false
+    isOpenBuy.value = false
+    return
+  }
+
+  //1 - EnterWindow
+  //2 - RegisterWindow
+  //3 - BuyWindow
+  const windows: Record<number, { value: boolean }> = {
+    1: isOpenEnter,
+    2: isOpenRegister,
+    3: isOpenBuy
+  }
+
+  const target = windows[arg]
+  if (target) {
+    target.value = !target.value
   }
 }
 
@@ -18,9 +39,25 @@ function openModalWindow() {
 
 <template>
   <div class="modal-overlay" v-if="isOpen">
-    <div class="enter-modal-window" v-if="isOpen">
+    <div class="modal-window" v-if="isOpenEnter">
       <div class="close-zone-modal">
+        <div @click="openModalWindow(1)">X</div>
+      </div>
+      <div class="input-zone-modal">
 
+      </div>
+    </div>
+    <div class="modal-window" v-if="isOpenRegister">
+      <div class="close-zone-modal">
+        <div @click="openModalWindow(2)">X</div>
+      </div>
+      <div class="input-zone-modal">
+
+      </div>
+    </div>
+    <div class="modal-window" v-if="isOpenBuy">
+      <div class="close-zone-modal">
+        <div @click="openModalWindow(3)">X</div>
       </div>
       <div class="input-zone-modal">
 
@@ -32,8 +69,8 @@ function openModalWindow() {
       <h1>Nordline</h1>
     </div>
     <div class="account-zone">
-      <button id="register-button">Зарегистрироваться</button>
-      <button id="enter-button" @click="openModalWindow">Войти</button>
+      <button id="register-button" @click="openModalWindow(2)">Зарегистрироваться</button>
+      <button id="enter-button" @click="openModalWindow(1)">Войти</button>
     </div>
     <div class="order-bar">
       <input list="data-list" placeholder="Откуда">
@@ -50,7 +87,7 @@ function openModalWindow() {
       <datalist id="data-list">
 
       </datalist>
-      <button>Купить</button>
+      <button @click="openModalWindow(3)">Купить</button>
     </div>
     <div class="advertisment-bar">
       <div class="advertisment-item">
@@ -247,16 +284,98 @@ function openModalWindow() {
   --transition-fast: 0.2s ease;
   --transition-base: 0.4s ease;
   --transition-slow: 0.6s ease;
+
+  /* =========================================================
+     КНОПКИ — расширенный набор (доп. к базовым btn-*)
+     ========================================================= */
+
+  /* Опасное действие (закрытие, удаление, отмена) */
+  --btn-danger-bg: #f2b8b8;
+  --btn-danger-bg-hover: #e79c9c;
+  --btn-danger-bg-active: #d97f7f;
+  --btn-danger-text: #4a1f1f;
+
+  /* Успех (подтвердить, сохранить) */
+  --btn-success-bg: #b8e0c4;
+  --btn-success-bg-hover: #9ed1ae;
+  --btn-success-bg-active: #82c096;
+  --btn-success-text: #24402f;
+
+  /* Предупреждение (осторожно, внимание) */
+  --btn-warning-bg: #ffe0a8;
+  --btn-warning-bg-hover: #f7cf85;
+  --btn-warning-bg-active: #eabd66;
+  --btn-warning-text: #4a3a17;
+
+  /* Информация / нейтральный акцент */
+  --btn-info-bg: #c5cdec;
+  --btn-info-bg-hover: #aeb8e0;
+  --btn-info-bg-active: #97a2d4;
+  --btn-info-text: #2a2f4a;
+
+  /* «Призрачная» (ghost) — только контур, без фона */
+  --btn-ghost-bg: transparent;
+  --btn-ghost-bg-hover: #f0e8da;
+  --btn-ghost-bg-active: #e6dfd3;
+  --btn-ghost-text: #4a4a4a;
+  --btn-ghost-border: #cfc4b2;
+
+  /* Круглая иконочная кнопка (закрытие, крестик) */
+  --icon-btn-size: 32px;
+  --icon-btn-radius: 50%;
+  --icon-btn-bg: #f0e8da;
+  --icon-btn-bg-hover: #e6dfd3;
+  --icon-btn-bg-active: #d9cfbe;
+  --icon-btn-text: #4a4a4a;
+
+  /* Состояния у кнопок */
+  --btn-disabled-opacity: 0.55;
+  --btn-focus-ring-color: rgba(168, 213, 186, 0.45);
+
+  /* Общие размеры */
+  --btn-padding-y: 10px;
+  --btn-padding-x: 18px;
+  --btn-radius: var(--radius-sm);
+  --btn-font-size: 16px;
+  --btn-font-size-sm: 14px;
+  --btn-font-size-lg: 18px;
 }
 
-.enter-modal-window .close-zone-modal {
+.modal-window .close-zone-modal {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 
-  border-bottom: 2px solid var(--border-color);
+  border-bottom: 2px solid var(--border-strong);
 }
 
-.enter-modal-window {
+.modal-window .close-zone-modal div {
+  background-color: var(--btn-danger-bg);
+  width: 3%;
+  height: 60%;
+  margin: 5px;
+  color: var(--text-on-accent);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: var(--btn-radius);
+
+  transition: all var(--transition-base);
+}
+
+.modal-window .close-zone-modal div:hover {
+  transform: scale(1.05);
+  background-color: var(--btn-danger-bg-hover);
+}
+
+.modal-window .close-zone-modal div:active {
+  transform: scale(0.95);
+  background-color: var(--btn-danger-bg-active);
+}
+
+.modal-window {
   display: grid;
   grid-template-rows: 10% auto;
 
