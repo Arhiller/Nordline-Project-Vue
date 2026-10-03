@@ -100,7 +100,7 @@ function openModalWindow(arg: number) {
 
       </div>
     </div>
-    <div class="marketing-bar">
+    <div class="marketing-bar" data-aos="fade-up" data-aos-once="false">
 
     </div>
   </div>

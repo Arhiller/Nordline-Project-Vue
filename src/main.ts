@@ -8,6 +8,10 @@ import router from './router'
 import PrimeVue from 'primevue/config'
 import Aura from '@primevue/themes/aura'
 
+import 'aos/dist/aos.css'
+
+import AOS from 'aos'
+
 const app = createApp(App)
 
 app.use(createPinia())
@@ -24,3 +28,10 @@ app.use(PrimeVue, {
 })
 
 app.mount('#app')
+
+AOS.init({
+  easing: 'ease-in-out',
+  duration: 700,
+  once: true,
+  delay: 400,
+})
