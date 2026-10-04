@@ -10,3 +10,23 @@
   background: var(--bg-color);
   color: var(--text-color);
 }
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px 40px;
+  font-family: sans-serif;
+  background-color: #f8f9fa;
+}
+
+.footer-links {
+  display: flex;
+  gap: 15px;
+  color: #555;
+}
+
+footer div {
+  margin-bottom: 10px;
+}

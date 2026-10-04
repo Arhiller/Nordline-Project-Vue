@@ -129,10 +129,19 @@ function openModalWindow(arg: number) {
   <div class="marketing-bar" data-aos="fade-up" data-aos-once="false">
 
   </div>
-  <footer>
-    <div class="footer-bar">
+  <!-- Добавим пока что временно. Я не знаю как это будет выглядеть после, но в случай чего изменим -->
+  <footer role="contentinfo">
+    <div class="footer-logo">✈️ Авиакомпания Nordline</div>
 
+    <div class="footer-links">
+      <span>[ Контакты ]</span>
+      <span>&bull;</span>
+      <span>[ Пассажирам ]</span>
+      <span>&bull;</span>
+      <span>[ Популярные рейсы ]</span>
     </div>
+
+    <div class="footer-copyright">&copy; 2026 Nordline. Все права защищены.</div>
   </footer>
 </template>
 
