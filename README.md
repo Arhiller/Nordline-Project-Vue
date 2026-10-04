@@ -15,3 +15,19 @@
 
 - [Главная страница](/src/App.vue)
 - [Стили](/src/assets/style/)
+
+## Главная страница
+
+![mainPage](/assets/screenshots/mainPagePreview.png)
+
+Здесь я временно добавлю заглушку.
+
+![review-footer](/assets/screenshots/review-footer.png)
+
+### Модальные окна
+
+![register](/assets/screenshots/registerModal.png)
+
+![login](/assets/screenshots/enterModal.png)
+
+![buy](/assets/screenshots/buy-modal.png)
