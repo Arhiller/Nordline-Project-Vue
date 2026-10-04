@@ -125,10 +125,15 @@ function openModalWindow(arg: number) {
 
       </div>
     </div>
-    <div class="marketing-bar" data-aos="fade-up" data-aos-once="false">
+  </div>
+  <div class="marketing-bar" data-aos="fade-up" data-aos-once="false">
+
+  </div>
+  <footer>
+    <div class="footer-bar">
 
     </div>
-  </div>
+  </footer>
 </template>
 
 <style scoped>
