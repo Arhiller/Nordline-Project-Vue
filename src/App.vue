@@ -44,7 +44,13 @@ function openModalWindow(arg: number) {
         <div @click="openModalWindow(1)">X</div>
       </div>
       <div class="input-zone-modal">
-
+        <input type="text" placeholder="Логин">
+        <input type="password" placeholder="Пароль">
+        <input type="text" placeholder="Телефон">
+      </div>
+      <div class="button-zone-modal">
+        <button>Войти</button>
+        <button>Зарегистрироваться</button>
       </div>
     </div>
     <div class="modal-window" v-if="isOpenRegister">

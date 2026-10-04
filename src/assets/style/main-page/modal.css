@@ -54,3 +54,70 @@
   transform: scale(0.95);
   background-color: var(--btn-danger-bg-active);
 }
+
+.modal-window .input-zone-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-window .button-zone-modal {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-window input {
+  width: 40%;
+  height: 42px;
+  padding: 0 14px;
+  margin-top: 12px;
+
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--text-color);
+  background: var(--surface-alt);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.modal-window input::placeholder {
+  color: var(--text-muted);
+}
+
+.modal-window input:focus {
+  background: var(--surface-color);
+  border-color: var(--accent-color);
+  box-shadow: var(--shadow-focus);
+}
+
+.modal-window button {
+  height: 42px;
+  padding: 0 22px;
+  width: 30%;
+
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--text-color);
+  background: var(--accent-2);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.4s ease;
+}
+
+.modal-window button:hover {
+  background: var(--accent-2-hover);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-hover);
+}
+
+.modal-window button:active {
+  transform: scale(0.95);
+}
