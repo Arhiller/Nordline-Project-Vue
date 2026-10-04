@@ -72,8 +72,20 @@ function openModalWindow(arg: number) {
       <div class="close-zone-modal">
         <div @click="openModalWindow(3)">X</div>
       </div>
-      <div class="input-zone-modal">
-
+      <div class="input-zone-modal modal--register">
+        <h2>Оформление покупки</h2>
+        <input type="text" placeholder="Паспортные данные"></input>
+        <input type="text" placeholder="СНИЛС"></input>
+        <input type="text" placeholder="Номер карты"></input>
+        <div class="card-description">
+          <input type="text" placeholder="Срок действия ММ/ГГ"></input>
+          <input type="text" placeholder="CVC/CVV"></input>
+        </div>
+        <p>Итого к оплате: X XXX руб.</p>
+        <div id="buy-button-zone">
+          <button>Оплатить</button>
+          <button>Отмена</button>
+        </div>
       </div>
     </div>
   </div>
