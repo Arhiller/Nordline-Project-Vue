@@ -31,7 +31,7 @@ app.mount('#app')
 
 AOS.init({
   easing: 'ease-in-out',
-  duration: 700,
+  duration: 400,
   once: true,
-  delay: 400,
+  delay: 200,
 })

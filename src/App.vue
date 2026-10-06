@@ -106,12 +106,7 @@ function openModalWindow(arg: number) {
       <datalist id="data-list">
 
       </datalist>
-      <DatePicker dateFormat="dd.mm.yy"></DatePicker>
-
-      <input>
-      <datalist id="data-list">
-
-      </datalist>
+      <DatePicker dateFormat="dd.mm.yy" placeholder="Выбрите дату"></DatePicker>
       <button @click="openModalWindow(3)">Купить</button>
     </div>
     <div class="advertisment-bar">
