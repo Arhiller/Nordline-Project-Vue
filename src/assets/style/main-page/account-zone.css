@@ -4,6 +4,7 @@
   justify-self: end;
   align-self: start;
   z-index: 2;
+  min-width: 50%;
 
   display: flex;
   gap: 8px;
@@ -35,5 +36,80 @@
 }
 
 .account-zone button:active {
+  transform: scale(0.95);
+}
+
+.user-panel {
+  width: 60%;
+  transition: all 0.2s ease;
+  border: 2px solid var(--nl-user-panel-border-color) !important;
+}
+
+.user-panel:active {
+  transform: scale(0.95) !important;
+}
+
+.user-panel:hover {
+  background: var(--nl-user-panel-bg-hover) !important;
+  transform: scale(1.05);
+}
+
+.account-name span {
+  display: flex;
+  flex-direction: column;
+  color: var(--nl-user-panel-text-color-name);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--nl-user-panel-bg-default);
+}
+
+.settings-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+  padding: 0;
+
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.settings-button img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--nl-user-panel-bg-default);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+  pointer-events: none;
+}
+
+.settings-button:hover {
+  background: var(--nl-user-panel-bg-hover, rgba(0, 0, 0, 0.06));
+}
+
+.settings-button:hover img {
+  transform: scale(1.08);
+  box-shadow: var(--shadow-hover, 0 6px 16px rgba(0, 0, 0, 0.15));
+}
+
+.settings-button:active {
+  transform: scale(0.95);
+}
+
+.settings-button:active img {
   transform: scale(0.95);
 }

@@ -166,4 +166,15 @@
   --btn-font-size: 16px;
   --btn-font-size-sm: 14px;
   --btn-font-size-lg: 18px;
+
+  /* Цвета фонов и границ */
+  --nl-user-panel-bg-default: #ffffff;
+  --nl-user-panel-bg-hover: #fcfaf7;
+  --nl-user-panel-bg-avatar-fallback: #eaddcf;
+  --nl-user-panel-border-color: #f3ede4;
+
+  /* Цвета текста по ролям */
+  --nl-user-panel-text-color-name: #3d3b38;
+  --nl-user-panel-text-color-role: #8a857f;
+  --nl-user-panel-text-color-initials: #3d3b38;
 }
