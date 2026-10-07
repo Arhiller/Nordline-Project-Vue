@@ -117,7 +117,8 @@
 
 ## Структура проекта
 
-- [Главная страница](/src/App.vue)
+- [Гостевая страница](/src/views/HomeView.vue)
+- [Главная страница](/src/views/MainPageView.vue)
 - [Стили](/src/assets/style/)
 
 ## Главная страница
