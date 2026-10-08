@@ -177,4 +177,187 @@
   --nl-user-panel-text-color-name: #3d3b38;
   --nl-user-panel-text-color-role: #8a857f;
   --nl-user-panel-text-color-initials: #3d3b38;
+
+  /* Стили */
+  --milk-color: #FDFFF5
+}
+
+
+:global([data-theme="dark"]) {
+  /* Фон — глубокое ночное небо, не чёрное */
+  --bg-color: #191d2b;
+  --bg-soft: #1e2333;
+  --bg-base: #191d2b;
+  --bg-strong: #13161f;
+  --bg-muted: #242a3c;
+
+  /* Поверхности */
+  --surface-color: #222838;
+  --surface-alt: #272e40;
+  --surface-soft: #222838;
+  --surface-base: #272e40;
+  --surface-strong: #2e364a;
+  --surface-sunken: #151822;
+
+  /* Границы */
+  --border-color: #333b50;
+  --border-soft: #2a3142;
+  --border-base: #333b50;
+  --border-strong: #454e66;
+  --border-focus: #96b8e0;
+  --border-invalid: #a86868;
+
+  /* Стили границ (были пропущены) */
+  --border-style: 2px solid var(--border-color);
+  --border-style-soft: 1px solid var(--border-soft);
+  --border-style-base: 2px solid var(--border-base);
+  --border-style-strong: 2px solid var(--border-strong);
+
+  /* Текст */
+  --text-color: #cdd4e2;
+  --text-soft: #666d82;
+  --text-muted: #8a91a6;
+  --text-base: #cdd4e2;
+  --text-strong: #e6eaf3;
+  --text-on-accent: #191d2b;          /* для светлых акцентов (accent-1, primary) */
+  --text-on-accent-2: #ece2d0;        /* НОВОЕ: для тёмного accent-2 (secondary) */
+  --text-link: #9dc0e6;
+  --text-link-hover: #b8d4ee;
+
+   /* Акценты
+     accent-1 — светлый (лунный голубой)
+     accent-2 — приглушённая слива (лунная роза), светлый текст на ней */
+  --accent-color: #96b8e0;
+  --accent-hover: #a8c8ec;
+  --accent-2: #6b4a5e;
+  --accent-2-hover: #7d566c;
+  --accent-2-active: #5a3d4f;
+
+  /* Текст */
+  --text-on-accent-2: #f0e2ea;
+
+  /* Кнопки — secondary (= accent-2) */
+  --btn-secondary-bg: #6b4a5e;
+  --btn-secondary-bg-hover: #7d566c;
+  --btn-secondary-bg-active: #5a3d4f;
+  --btn-secondary-text: #f0e2ea;
+  /* Плитки */
+  --tile-1-start: #1e2b38;
+  --tile-2-start: #2e2a34;
+  --tile-3-start: #232a45;
+
+  /* Панель / тени */
+  --dark-panel: #292c33; 
+  --shadow-soft: 0 6px 18px rgba(10, 14, 26, 0.45);
+  --shadow-hover: 0 10px 24px rgba(10, 14, 26, 0.6);
+  --shadow-focus: 0 0 0 4px rgba(150, 184, 224, 0.3);
+
+  /* Инпуты */
+  --input-bg: #222838;
+  --input-bg-hover: #272e40;
+  --input-bg-focus: #272e40;
+  --input-bg-disabled: #151822;
+  --input-border: #333b50;
+  --input-border-hover: #454e66;
+  --input-border-focus: #96b8e0;
+  --input-text: #cdd4e2;
+  --input-placeholder: #666d82;
+  --input-text-disabled: #454e66;
+  --input-shadow-focus: 0 0 0 4px rgba(150, 184, 224, 0.3);
+
+  /* Кнопки — primary (светлый лунный) */
+  --btn-primary-bg: #96b8e0;
+  --btn-primary-bg-hover: #a8c8ec;
+  --btn-primary-bg-active: #7ea8d4;
+  --btn-primary-text: #191d2b;
+  --btn-primary-border: transparent;
+
+  /* Кнопки — secondary (= accent-2). Тёмный фон + светлый текст */
+  --btn-secondary-bg: #5a4632;
+  --btn-secondary-bg-hover: #6a5540;
+  --btn-secondary-bg-active: #4a3828;
+  --btn-secondary-text: #ece2d0;
+
+  /* Кнопки — neutral */
+  --btn-neutral-bg: #2e364a;
+  --btn-neutral-bg-hover: #383f55;
+  --btn-neutral-bg-active: #454e66;
+  --btn-neutral-text: #cdd4e2;
+
+  /* Ghost */
+  --btn-ghost-bg: transparent;
+  --btn-ghost-bg-hover: #2a3142;
+  --btn-ghost-bg-active: #333b50;
+  --btn-ghost-text: #cdd4e2;
+  --btn-ghost-border: #454e66;
+
+  /* Остальные типы */
+  --btn-danger-bg: #7a3a3a;
+  --btn-danger-bg-hover: #8e4646;
+  --btn-danger-bg-active: #a25454;
+  --btn-danger-text: #f0dada;
+
+  --btn-success-bg: #3a6a58;
+  --btn-success-bg-hover: #4a7a68;
+  --btn-success-bg-active: #5a8a78;
+  --btn-success-text: #d8f0e4;
+
+  --btn-warning-bg: #6a5230;
+  --btn-warning-bg-hover: #7a5f3a;
+  --btn-warning-bg-active: #8a6c44;
+  --btn-warning-text: #f8ecd4;
+
+  --btn-info-bg: #3a4a7a;
+  --btn-info-bg-hover: #4a5a8a;
+  --btn-info-bg-active: #5a6a9a;
+  --btn-info-text: #dce4f4;
+
+  --btn-disabled-bg: #242a3c;
+  --btn-disabled-text: #666d82;
+  --btn-disabled-opacity: 0.55;                 /* было пропущено */
+  --btn-focus-ring-color: rgba(150, 184, 224, 0.45); /* было пропущено */
+
+  --btn-shadow: 0 3px 8px rgba(10, 14, 26, 0.4);
+  --btn-shadow-hover: 0 6px 14px rgba(10, 14, 26, 0.55);
+
+  /* Иконка-кнопка */
+  --icon-btn-bg: #2e364a;
+  --icon-btn-bg-hover: #383f55;
+  --icon-btn-bg-active: #454e66;
+  --icon-btn-text: #cdd4e2;
+
+  /* Состояния */
+  --state-success-bg: #1c2f2a;
+  --state-success-text: #92c8b4;
+  --state-success-border: #3a6a58;
+
+  --state-warning-bg: #2f2a1c;
+  --state-warning-text: #d8b878;
+  --state-warning-border: #6a5a3a;
+
+  --state-error-bg: #2f1c1c;
+  --state-error-text: #d09494;
+  --state-error-border: #6a3a3a;
+
+  --state-info-bg: #1c2438;
+  --state-info-text: #a4b8e0;
+  --state-info-border: #3a4a7a;
+
+  /* Разное */
+  --divider-color: #2a3142;
+  --overlay-color: rgba(13, 16, 24, 0.7);
+  --scrollbar-thumb: #454e66;
+  --scrollbar-track: #191d2b;
+  --button-hover-color: #242a3c;
+
+  /* Nordline */
+  --nl-user-panel-bg-default: #222838;
+  --nl-user-panel-bg-hover: #272e40;
+  --nl-user-panel-bg-avatar-fallback: #333b50;
+  --nl-user-panel-border-color: #2a3142;
+  --nl-user-panel-text-color-name: #e6eaf3;
+  --nl-user-panel-text-color-role: #8a91a6;
+  --nl-user-panel-text-color-initials: #e6eaf3;
+
+  --milk-color: #222838;
 }

@@ -8,8 +8,13 @@ const isOpenSettings = ref(false)
 const isOpenAccount = ref(false)
 const isOpenBuy = ref(false)
 
+const isOpenSettingsTheme = ref(false)
+const isOpenSettingsDeleteAccount = ref(false)
+
 function openModalWindow(arg: number) {
-    isOpen.value = !isOpen.value
+    isOpenSettingsTheme.value = false
+    isOpenSettingsDeleteAccount.value = false
+    if(arg <= 3) isOpen.value = !isOpen.value
     if (isOpen.value) {
         document.body.style.overflow = "hidden"
     } else {
@@ -23,10 +28,15 @@ function openModalWindow(arg: number) {
     //1 - SettingWindow
     //2 - AccountWinodw
     //3 - BuyWindow
+
+    //4 - Theme
+    //5 - Delete
     const windows: Record<number, { value: boolean }> = {
         1: isOpenSettings,
         2: isOpenAccount,
-        3: isOpenBuy
+        3: isOpenBuy,
+        4: isOpenSettingsTheme,
+        5: isOpenSettingsDeleteAccount
     }
 
     const target = windows[arg]
@@ -34,6 +44,47 @@ function openModalWindow(arg: number) {
         target.value = !target.value
     }
 }
+
+type Theme = 'light' | 'dark' | 'system'
+const theme = ref<Theme>('system')
+const mql = matchMedia('(prefers-color-scheme: dark)')
+
+function onSystemChanged(){
+    if(theme.value === 'system') applyTheme()
+}
+
+function applyTheme(){
+    let actual: Theme;
+    if(theme.value === 'system'){
+        actual = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' 
+    } else{
+        actual = theme.value
+    }
+    document.documentElement.dataset.theme = actual
+
+    if(actual === 'dark'){
+        document.documentElement.classList.add('dark-theme')
+    } else{
+        document.documentElement.classList.remove('dark-theme')
+    }
+}
+
+function setTheme(themeValue: Theme){
+    theme.value = themeValue
+    localStorage.setItem('theme', themeValue)
+    applyTheme()
+}
+
+onMounted(() => {
+    theme.value = (localStorage.getItem('theme') as Theme) ?? "system"
+    mql.addEventListener('change', onSystemChanged)
+    applyTheme()
+})
+
+onUnmounted(() => {
+    delete document.documentElement.dataset.theme
+    mql.removeEventListener('change', onSystemChanged)
+})
 
 </script>
 
@@ -45,14 +96,20 @@ function openModalWindow(arg: number) {
                 <div @click="openModalWindow(1)">X</div>
             </div>
             <div class="left-bar">
-                <button></button>
-                <button></button>
-                <button></button>
-                <button></button>
-                <button></button>                
+                <button @click="openModalWindow(4)">Внешний вид</button>
+                <button @click="openModalWindow(5)">Удалить аккаунт</button>                
             </div>
             <div class="settings-zone">
-
+                <div class="theme-settings" v-if="isOpenSettingsTheme">
+                    <h2>Настройки оформления</h2>
+                    <button id="light" @click="setTheme('light')">Светлая тема</button>
+                    <button id="dark" @click="setTheme('dark')">Черная тема</button>
+                    <button id="system" @click="setTheme('system')">Системная тема</button>
+                </div>
+                <div class="delete-account" v-if="isOpenSettingsDeleteAccount">
+                    <h2>Удаление аккаунта</h2>
+                    <button>Удалить аккаунт</button>
+                </div>
             </div>
         </div>
         <div class="modal-window" v-if="isOpenBuy">
@@ -60,7 +117,7 @@ function openModalWindow(arg: number) {
                 <div @click="openModalWindow(3)">X</div>
             </div>
             <div class="input-zone-modal modal--register">
-                <h2>Оформление покупки</h2>
+                <h2 style="color: var(--text-color)">Оформление покупки</h2>
                 <input type="text" placeholder="Паспортные данные"></input>
                 <input type="text" placeholder="СНИЛС"></input>
                 <input type="text" placeholder="Номер карты"></input>
@@ -71,7 +128,7 @@ function openModalWindow(arg: number) {
                 <p>Итого к оплате: X XXX руб.</p>
                 <div id="buy-button-zone">
                     <button>Оплатить</button>
-                    <button>Отмена</button>
+                    <button @click="openModalWindow(3)">Отмена</button>
                 </div>
             </div>
         </div>
