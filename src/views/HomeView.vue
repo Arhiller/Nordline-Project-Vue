@@ -35,6 +35,12 @@ function openModalWindow(arg: number) {
   }
 }
 
+function switchToRegister() {
+    isOpenEnter.value = false
+    isOpenRegister.value = true
+    isOpenBuy.value = false
+}
+
 </script>
 
 <template>
@@ -51,7 +57,7 @@ function openModalWindow(arg: number) {
       </div>
       <div class="button-zone-modal">
         <button>Войти</button>
-        <button>Зарегистрироваться</button>
+        <button @click="switchToRegister()">Зарегистрироваться</button>
       </div>
     </div>
     <div class="modal-window" v-if="isOpenRegister">
