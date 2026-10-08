@@ -1,0 +1,72 @@
+.settings-modal {
+  display: grid;
+  grid-template-columns: 30% auto;
+  grid-template-rows: 10% auto;
+
+  background-color: var(--bg-color);
+  width: 80%;
+  height: 80%;
+}
+
+.settings-modal .close-zone-modal {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  border-bottom: 2px solid var(--border-strong);
+}
+
+.settings-modal .close-zone-modal div {
+  background-color: var(--btn-danger-bg);
+  width: 3%;
+  height: 60%;
+  margin: 5px;
+  color: var(--text-on-accent);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: var(--btn-radius);
+
+  transition: all var(--transition-base);
+}
+
+.settings-modal .close-zone-modal div:hover {
+  transform: scale(1.05);
+  background-color: var(--btn-danger-bg-hover);
+}
+
+.settings-modal .close-zone-modal div:active {
+  transform: scale(0.95);
+  background-color: var(--btn-danger-bg-active);
+}
+
+.settings-modal .left-bar{
+    grid-row: 2;
+    grid-column: 1;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-right: 2px solid var(--border-strong);
+}
+
+.settings-modal button{
+  height: 60px;
+  padding: 0 22px;
+  margin-top: 20px;
+  width: 90%;
+
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--text-color);
+  background: var(--accent-2);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.4s ease;
+}

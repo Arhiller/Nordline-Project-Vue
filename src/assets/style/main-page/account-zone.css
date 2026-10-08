@@ -86,30 +86,3 @@
   transition: all 0.25s ease;
 }
 
-.settings-button img {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  object-fit: cover;
-  background: var(--nl-user-panel-bg-default);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-  transition: all 0.25s ease;
-  pointer-events: none;
-}
-
-.settings-button:hover {
-  background: var(--nl-user-panel-bg-hover, rgba(0, 0, 0, 0.06));
-}
-
-.settings-button:hover img {
-  transform: scale(1.08);
-  box-shadow: var(--shadow-hover, 0 6px 16px rgba(0, 0, 0, 0.15));
-}
-
-.settings-button:active {
-  transform: scale(0.95);
-}
-
-.settings-button:active img {
-  transform: scale(0.95);
-}

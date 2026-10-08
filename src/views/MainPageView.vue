@@ -4,8 +4,8 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 
 const isOpen = ref(false)
-const isOpenEnter = ref(false)
-const isOpenRegister = ref(false)
+const isOpenSettings = ref(false)
+const isOpenAccount = ref(false)
 const isOpenBuy = ref(false)
 
 function openModalWindow(arg: number) {
@@ -14,18 +14,18 @@ function openModalWindow(arg: number) {
         document.body.style.overflow = "hidden"
     } else {
         document.body.style.overflow = ""
-        isOpenEnter.value = false
-        isOpenRegister.value = false
+        isOpenSettings.value = false
+        isOpenAccount.value = false
         isOpenBuy.value = false
         return
     }
 
-    //1 - EnterWindow
-    //2 - RegisterWindow
+    //1 - SettingWindow
+    //2 - AccountWinodw
     //3 - BuyWindow
     const windows: Record<number, { value: boolean }> = {
-        1: isOpenEnter,
-        2: isOpenRegister,
+        1: isOpenSettings,
+        2: isOpenAccount,
         3: isOpenBuy
     }
 
@@ -40,33 +40,19 @@ function openModalWindow(arg: number) {
 <template>
     <RouterView />
     <div class="modal-overlay" v-if="isOpen">
-        <div class="modal-window" v-if="isOpenEnter">
+        <div class="settings-modal" v-if="isOpenSettings">
             <div class="close-zone-modal">
                 <div @click="openModalWindow(1)">X</div>
             </div>
-            <div class="input-zone-modal">
-                <input type="text" placeholder="Логин">
-                <input type="password" placeholder="Пароль">
-                <input type="text" placeholder="Телефон">
+            <div class="left-bar">
+                <button></button>
+                <button></button>
+                <button></button>
+                <button></button>
+                <button></button>                
             </div>
-            <div class="button-zone-modal">
-                <button>Войти</button>
-                <button>Зарегистрироваться</button>
-            </div>
-        </div>
-        <div class="modal-window" v-if="isOpenRegister">
-            <div class="close-zone-modal">
-                <div @click="openModalWindow(2)">X</div>
-            </div>
-            <div class="input-zone-modal">
-                <input type="text" placeholder="Логин"></input>
-                <input type="password" placeholder="Пароль"></input>
-                <input type="password" placeholder="Повторить пароль"></input>
-                <input type="text" placeholder="Телефон"></input>
-                <input type="email" placeholder="Email"></input>
-            </div>
-            <div class="button-zone-modal">
-                <button>Зарегистрироваться</button>
+            <div class="settings-zone">
+
             </div>
         </div>
         <div class="modal-window" v-if="isOpenBuy">
@@ -91,9 +77,7 @@ function openModalWindow(arg: number) {
         </div>
     </div>
     <div class="grid-container">
-        <div class="settings-button">
-            <img src="/src/assets/Images/settings.png">
-        </div>
+        <div class="settings-button gear-icon" @click="openModalWindow(1)"></div>
         <div class="head-bar">
             <h1>Nordline</h1>
         </div>
@@ -146,6 +130,6 @@ function openModalWindow(arg: number) {
     </footer>
 </template>
 
-<style scoped>
+<style>
 @import '../assets/style/main.css'
 </style>
