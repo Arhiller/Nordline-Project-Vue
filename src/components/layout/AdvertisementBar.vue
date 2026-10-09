@@ -1,3 +1,12 @@
+<template>
+  <div class="advertisment-bar">
+    <div class="advertisment-item"></div>
+    <div class="advertisment-item"></div>
+    <div class="advertisment-item"></div>
+  </div>
+</template>
+
+<style scoped>
 .advertisment-bar {
   grid-row: 3;
   grid-column: 1 / -1;
@@ -36,3 +45,4 @@
   transform: translateY(-4px);
   box-shadow: var(--shadow-hover);
 }
+</style>

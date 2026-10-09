@@ -1,192 +1,104 @@
 <script setup lang="ts">
-import { DatePicker } from 'primevue';
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useRouter } from 'vue-router'
 
-const isOpen = ref(false)
-const isOpenSettings = ref(false)
-const isOpenAccount = ref(false)
-const isOpenBuy = ref(false)
+import HeaderBar from '../components/layout/HeaderBar.vue'
+import OrderBar from '../components/layout/OrderBar.vue'
+import AdvertisementBar from '../components/layout/AdvertisementBar.vue'
+import MarketingBar from '../components/layout/MarketingBar.vue'
+import FooterBar from '../components/layout/FooterBar.vue'
 
-const isOpenSettingsTheme = ref(false)
-const isOpenSettingsDeleteAccount = ref(false)
+import UserAccountZone from '../components/account/UserAccountZone.vue'
 
-function openModalWindow(arg: number) {
-    isOpenSettingsTheme.value = false
-    isOpenSettingsDeleteAccount.value = false
-    if(arg <= 3) isOpen.value = !isOpen.value
-    if (isOpen.value) {
-        document.body.style.overflow = "hidden"
-    } else {
-        document.body.style.overflow = ""
-        isOpenSettings.value = false
-        isOpenAccount.value = false
-        isOpenBuy.value = false
-        return
-    }
+import ModalOverlay from '../components/modals/ModalOverlay.vue'
+import SettingsModal from '../components/modals/SettingsModal.vue'
+import BuyModal from '../components/modals/BuyModal.vue'
 
-    //1 - SettingWindow
-    //2 - AccountWinodw
-    //3 - BuyWindow
+import SettingsButton from '../components/layout/SettingsButton.vue'
 
-    //4 - Theme
-    //5 - Delete
-    const windows: Record<number, { value: boolean }> = {
-        1: isOpenSettings,
-        2: isOpenAccount,
-        3: isOpenBuy,
-        4: isOpenSettingsTheme,
-        5: isOpenSettingsDeleteAccount
-    }
+type ActiveModal = 'settings' | 'buy' | null
+const activeModal = ref<ActiveModal>(null)
 
-    const target = windows[arg]
-    if (target) {
-        target.value = !target.value
-    }
+function openModal(name: ActiveModal) {
+  activeModal.value = name
+  document.body.style.overflow = 'hidden'
 }
+
+function closeModal() {
+  activeModal.value = null
+  document.body.style.overflow = ''
+}
+
 
 type Theme = 'light' | 'dark' | 'system'
 const theme = ref<Theme>('system')
 const mql = matchMedia('(prefers-color-scheme: dark)')
 
-function onSystemChanged(){
-    if(theme.value === 'system') applyTheme()
+function onSystemChanged() {
+  if (theme.value === 'system') applyTheme()
 }
 
-function applyTheme(){
-    let actual: Theme;
-    if(theme.value === 'system'){
-        actual = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' 
-    } else{
-        actual = theme.value
-    }
-    document.documentElement.dataset.theme = actual
+function applyTheme() {
+  let actual: Theme
+  if (theme.value === 'system') {
+    actual = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  } else {
+    actual = theme.value
+  }
+  document.documentElement.dataset.theme = actual
 
-    if(actual === 'dark'){
-        document.documentElement.classList.add('dark-theme')
-    } else{
-        document.documentElement.classList.remove('dark-theme')
-    }
+  if (actual === 'dark') {
+    document.documentElement.classList.add('dark-theme')
+  } else {
+    document.documentElement.classList.remove('dark-theme')
+  }
 }
 
-function setTheme(themeValue: Theme){
-    theme.value = themeValue
-    localStorage.setItem('theme', themeValue)
-    applyTheme()
+function setTheme(value: Theme) {
+  theme.value = value
+  localStorage.setItem('theme', value)
+  applyTheme()
 }
 
 onMounted(() => {
-    theme.value = (localStorage.getItem('theme') as Theme) ?? "system"
-    mql.addEventListener('change', onSystemChanged)
-    applyTheme()
+  theme.value = (localStorage.getItem('theme') as Theme) ?? 'system'
+  mql.addEventListener('change', onSystemChanged)
+  applyTheme()
 })
 
 onUnmounted(() => {
-    delete document.documentElement.dataset.theme
-    mql.removeEventListener('change', onSystemChanged)
+  delete document.documentElement.dataset.theme
+  mql.removeEventListener('change', onSystemChanged)
 })
-
 </script>
 
 <template>
-    <RouterView />
-    <div class="modal-overlay" v-if="isOpen">
-        <div class="settings-modal" v-if="isOpenSettings">
-            <div class="close-zone-modal">
-                <div @click="openModalWindow(1)">X</div>
-            </div>
-            <div class="left-bar">
-                <button @click="openModalWindow(4)">Внешний вид</button>
-                <button @click="openModalWindow(5)">Удалить аккаунт</button>                
-            </div>
-            <div class="settings-zone">
-                <div class="theme-settings" v-if="isOpenSettingsTheme">
-                    <h2>Настройки оформления</h2>
-                    <button id="light" @click="setTheme('light')">Светлая тема</button>
-                    <button id="dark" @click="setTheme('dark')">Черная тема</button>
-                    <button id="system" @click="setTheme('system')">Системная тема</button>
-                </div>
-                <div class="delete-account" v-if="isOpenSettingsDeleteAccount">
-                    <h2>Удаление аккаунта</h2>
-                    <button>Удалить аккаунт</button>
-                </div>
-            </div>
-        </div>
-        <div class="modal-window" v-if="isOpenBuy">
-            <div class="close-zone-modal">
-                <div @click="openModalWindow(3)">X</div>
-            </div>
-            <div class="input-zone-modal modal--register">
-                <h2 style="color: var(--text-color)">Оформление покупки</h2>
-                <input type="text" placeholder="Паспортные данные"></input>
-                <input type="text" placeholder="СНИЛС"></input>
-                <input type="text" placeholder="Номер карты"></input>
-                <div class="card-description">
-                    <input type="text" placeholder="Срок действия ММ/ГГ"></input>
-                    <input type="text" placeholder="CVC/CVV"></input>
-                </div>
-                <p>Итого к оплате: X XXX руб.</p>
-                <div id="buy-button-zone">
-                    <button>Оплатить</button>
-                    <button @click="openModalWindow(3)">Отмена</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="grid-container">
-        <div class="settings-button gear-icon" @click="openModalWindow(1)"></div>
-        <div class="head-bar">
-            <h1>Nordline</h1>
-        </div>
-        <div class="account-zone user-panel">
-            <img class="avatar" src="/src/assets/Images/avatar.png">
-            <div class="account-name">
-                <span>User One</span>
-            </div>
-        </div>
-        <div class="order-bar">
-            <input list="data-list" placeholder="Откуда">
-            <datalist id="data-list">
+  <RouterView />
 
-            </datalist>
-            <input list="data-list" placeholder="Куда">
-            <datalist id="data-list">
+  <ModalOverlay v-if="activeModal">
+    <SettingsModal
+      v-if="activeModal === 'settings'"
+      @close="closeModal"
+      @set-theme="setTheme"
+    />
+    <BuyModal
+      v-if="activeModal === 'buy'"
+      @close="closeModal"
+    />
+  </ModalOverlay>
 
-            </datalist>
-            <DatePicker dateFormat="dd.mm.yy" placeholder="Когда"></DatePicker>
-            <button @click="openModalWindow(3)">Купить</button>
-        </div>
-        <div class="advertisment-bar">
-            <div class="advertisment-item">
+  <div class="grid-container">
+    <SettingsButton @click="openModal('settings')" />
 
-            </div>
-            <div class="advertisment-item">
+    <HeaderBar />
+    <UserAccountZone />
+    <OrderBar @buy="openModal('buy')" />
+    <AdvertisementBar />
+  </div>
 
-            </div>
-            <div class="advertisment-item">
-
-            </div>
-        </div>
-    </div>
-    <div class="marketing-bar" data-aos="fade-up" data-aos-once="false">
-
-    </div>
-    <!-- Добавим пока что временно. Я не знаю как это будет выглядеть после, но в случай чего изменим -->
-    <footer role="contentinfo">
-        <div class="footer-logo">✈️ Авиакомпания Nordline</div>
-
-        <div class="footer-links">
-            <span>[ Контакты ]</span>
-            <span>&bull;</span>
-            <span>[ Пассажирам ]</span>
-            <span>&bull;</span>
-            <span>[ Популярные рейсы ]</span>
-        </div>
-
-        <div class="footer-copyright">&copy; 2026 Nordline. Все права защищены.</div>
-    </footer>
+  <MarketingBar />
+  <FooterBar />
 </template>
 
-<style>
-@import '../assets/style/main.css'
+<style scoped>
+@import '../assets/style/main.css';
 </style>

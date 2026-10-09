@@ -1,3 +1,23 @@
+<script setup lang="ts">
+import { DatePicker } from 'primevue'
+
+const emit = defineEmits<{ (e: 'buy'): void }>()
+</script>
+
+<template>
+  <div class="order-bar">
+    <input list="data-list-from" placeholder="Откуда">
+    <datalist id="data-list-from"></datalist>
+
+    <input list="data-list-to" placeholder="Куда">
+    <datalist id="data-list-to"></datalist>
+
+    <DatePicker dateFormat="dd.mm.yy" placeholder="Когда" />
+    <button @click="emit('buy')">Купить</button>
+  </div>
+</template>
+
+<style scoped>
 .order-bar {
   grid-row: 2;
   grid-column: 1 / -1;
@@ -71,3 +91,4 @@
 .order-bar button:active {
   transform: scale(0.95);
 }
+</style>

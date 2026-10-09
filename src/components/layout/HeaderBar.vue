@@ -1,3 +1,10 @@
+<template>
+  <div class="head-bar">
+    <h1>Nordline</h1>
+  </div>
+</template>
+
+<style scoped>
 .head-bar {
   grid-row: 1;
   grid-column: 2 / 4;
@@ -17,3 +24,4 @@
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
 }
+</style>

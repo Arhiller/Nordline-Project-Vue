@@ -1,3 +1,8 @@
+<template>
+  <div class="marketing-bar" data-aos="fade-up" data-aos-once="false"></div>
+</template>
+
+<style scoped>
 .marketing-bar {
   width: 100%;
   padding: 0 24px 24px;
@@ -11,3 +16,4 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
 }
+</style>

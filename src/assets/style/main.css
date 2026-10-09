@@ -1,12 +1,18 @@
 @import './base.css';
-@import './layout.css';
 @import './variables.css';
 
-@import './main-page/account-zone.css';
-@import './main-page/advertisement.css';
-@import './main-page/header.css';
-@import './main-page/marketing.css';
-@import './main-page/modal.css';
-@import './main-page/order-bar.css';
+/* Grid-контейнер, общий для страниц */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 10% auto auto;
+  gap: 20px;
+  padding: 24px;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
 @import './gear-style.css';
-@import "./base/settings.css"

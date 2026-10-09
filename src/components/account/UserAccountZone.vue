@@ -1,3 +1,19 @@
+<script setup lang="ts">
+defineProps<{
+  userName?: string
+}>()
+</script>
+
+<template>
+  <div class="account-zone user-panel">
+    <img class="avatar" src="/src/assets/Images/avatar.png" alt="avatar">
+    <div class="account-name">
+      <span>{{ userName ?? 'User One' }}</span>
+    </div>
+  </div>
+</template>
+
+<style scoped>
 .account-zone {
   grid-row: 1;
   grid-column: 4;
@@ -14,29 +30,6 @@
   border: var(--border-style);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
-}
-
-.account-zone button {
-  padding: 10px 16px;
-  font-family: inherit;
-  font-size: 16px;
-  color: var(--text-color);
-  background: var(--accent-color);
-  border: none;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
-  transition: all 0.4s ease;
-}
-
-.account-zone button:hover {
-  background: var(--accent-hover);
-  transform: scale(1.05);
-  box-shadow: var(--shadow-hover);
-}
-
-.account-zone button:active {
-  transform: scale(0.95);
 }
 
 .user-panel {
@@ -67,22 +60,4 @@
   object-fit: cover;
   background: var(--nl-user-panel-bg-default);
 }
-
-.settings-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 48px;
-  height: 48px;
-  padding: 0;
-
-  background: transparent;
-  border: none;
-  border-radius: 50%;
-
-  cursor: pointer;
-
-  transition: all 0.25s ease;
-}
-
+</style>

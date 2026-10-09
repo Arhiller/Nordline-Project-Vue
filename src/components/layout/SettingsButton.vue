@@ -1,3 +1,35 @@
+<script setup lang="ts">
+const emit = defineEmits<{ (e: 'click'): void }>()
+</script>
+
+<template>
+  <button class="settings-button" @click="emit('click')" aria-label="Настройки">
+    <span class="gear-icon"></span>
+  </button>
+</template>
+
+<style scoped>
+.settings-button {
+  grid-row: 1;
+  grid-column: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+  padding: 0;
+
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
 .gear-icon {
   display: inline-block;
   width: 32px;
@@ -11,6 +43,7 @@
   transition: transform 0.4s ease-out;
 }
 
-.gear-icon:hover {
+.settings-button:hover .gear-icon {
   transform: rotate(90deg);
 }
+</style>
