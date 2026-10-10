@@ -1,14 +1,11 @@
 <script setup lang="ts">
-const emit = defineEmits<{
-  (e: 'login'): void
-  (e: 'register'): void
-}>()
+import { openModal } from '@/assets/scripts/modal';
 </script>
 
 <template>
   <div class="account-zone">
-    <button id="register-button" @click="emit('register')">Зарегистрироваться</button>
-    <button id="enter-button" @click="emit('login')">Войти</button>
+    <button id="register-button" @click="openModal('register')">Зарегистрироваться</button>
+    <button id="enter-button" @click="openModal('login')">Войти</button>
   </div>
 </template>
 

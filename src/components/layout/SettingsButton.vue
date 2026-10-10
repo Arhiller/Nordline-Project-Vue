@@ -1,9 +1,9 @@
 <script setup lang="ts">
-const emit = defineEmits<{ (e: 'click'): void }>()
+import { openModal } from '@/assets/scripts/modal';
 </script>
 
 <template>
-  <button class="settings-button" @click="emit('click')" aria-label="Настройки">
+  <button class="settings-button" @click="openModal('settings')" aria-label="Настройки">
     <span class="gear-icon"></span>
   </button>
 </template>

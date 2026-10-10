@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { DatePicker } from 'primevue'
-
-const emit = defineEmits<{ (e: 'buy'): void }>()
+import { openModal } from '@/assets/scripts/modal';
 </script>
 
 <template>
@@ -13,7 +12,7 @@ const emit = defineEmits<{ (e: 'buy'): void }>()
     <datalist id="data-list-to"></datalist>
 
     <DatePicker dateFormat="dd.mm.yy" placeholder="Когда" />
-    <button @click="emit('buy')">Купить</button>
+    <button @click="openModal('buy')">Купить</button>
   </div>
 </template>
 

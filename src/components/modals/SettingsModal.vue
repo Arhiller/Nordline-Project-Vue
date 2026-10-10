@@ -1,12 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-
-type Theme = 'light' | 'dark' | 'system'
-
-const emit = defineEmits<{
-  (e: 'close'): void
-  (e: 'set-theme', theme: Theme): void
-}>()
+import {setTheme} from '@/assets/scripts/theme.ts'
+import { closeModal } from '@/assets/scripts/modal.ts'
 
 const activeSection = ref<'theme' | 'delete' | null>(null)
 
@@ -17,12 +12,14 @@ function showTheme() {
 function showDelete() {
   activeSection.value = 'delete'
 }
+
+
 </script>
 
 <template>
   <div class="settings-modal">
     <div class="close-zone-modal">
-      <div @click="emit('close')">X</div>
+      <div @click="closeModal">X</div>
     </div>
 
     <div class="left-bar">
@@ -33,9 +30,9 @@ function showDelete() {
     <div class="settings-zone">
       <div class="theme-settings" v-if="activeSection === 'theme'">
         <h2>Настройки оформления</h2>
-        <button id="light" @click="emit('set-theme', 'light')">Светлая тема</button>
-        <button id="dark" @click="emit('set-theme', 'dark')">Черная тема</button>
-        <button id="system" @click="emit('set-theme', 'system')">Системная тема</button>
+        <button id="light" @click="setTheme('light')">Светлая тема</button>
+        <button id="dark" @click="setTheme('dark')">Черная тема</button>
+        <button id="system" @click="setTheme('system')">Системная тема</button>
       </div>
 
       <div class="delete-account" v-if="activeSection === 'delete'">

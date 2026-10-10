@@ -15,49 +15,11 @@ import BuyModal from '../components/modals/BuyModal.vue'
 
 import SettingsButton from '../components/layout/SettingsButton.vue'
 
-type ActiveModal = 'settings' | 'buy' | null
-const activeModal = ref<ActiveModal>(null)
-
-function openModal(name: ActiveModal) {
-  activeModal.value = name
-  document.body.style.overflow = 'hidden'
-}
-
-function closeModal() {
-  activeModal.value = null
-  document.body.style.overflow = ''
-}
+import { activeModal, openModal, closeModal } from '@/assets/scripts/modal.ts'
+import {theme, onSystemChanged, applyTheme, setTheme, mql} from '@/assets/scripts/theme.ts'
 
 
 type Theme = 'light' | 'dark' | 'system'
-const theme = ref<Theme>('system')
-const mql = matchMedia('(prefers-color-scheme: dark)')
-
-function onSystemChanged() {
-  if (theme.value === 'system') applyTheme()
-}
-
-function applyTheme() {
-  let actual: Theme
-  if (theme.value === 'system') {
-    actual = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-  } else {
-    actual = theme.value
-  }
-  document.documentElement.dataset.theme = actual
-
-  if (actual === 'dark') {
-    document.documentElement.classList.add('dark-theme')
-  } else {
-    document.documentElement.classList.remove('dark-theme')
-  }
-}
-
-function setTheme(value: Theme) {
-  theme.value = value
-  localStorage.setItem('theme', value)
-  applyTheme()
-}
 
 onMounted(() => {
   theme.value = (localStorage.getItem('theme') as Theme) ?? 'system'
@@ -76,14 +38,9 @@ onUnmounted(() => {
 
   <ModalOverlay v-if="activeModal">
     <SettingsModal
-      v-if="activeModal === 'settings'"
-      @close="closeModal"
-      @set-theme="setTheme"
-    />
+      v-if="activeModal === 'settings'" />
     <BuyModal
-      v-if="activeModal === 'buy'"
-      @close="closeModal"
-    />
+      v-if="activeModal === 'buy'" />
   </ModalOverlay>
 
   <div class="grid-container">

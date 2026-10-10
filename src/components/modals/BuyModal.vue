@@ -1,11 +1,11 @@
 <script setup lang="ts">
-const emit = defineEmits<{ (e: 'close'): void }>()
+import { closeModal } from '@/assets/scripts/modal';
 </script>
 
 <template>
   <div class="modal-window">
     <div class="close-zone-modal">
-      <div @click="emit('close')">X</div>
+      <div @click="closeModal()">X</div>
     </div>
     <div class="input-zone-modal modal--register">
       <h2 style="color: var(--text-color)">Оформление покупки</h2>
@@ -19,7 +19,7 @@ const emit = defineEmits<{ (e: 'close'): void }>()
       <p>Итого к оплате: X XXX руб.</p>
       <div id="buy-button-zone">
         <button>Оплатить</button>
-        <button @click="emit('close')">Отмена</button>
+        <button @click="closeModal">Отмена</button>
       </div>
     </div>
   </div>

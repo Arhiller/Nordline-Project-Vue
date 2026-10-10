@@ -1,14 +1,12 @@
 <script setup lang="ts">
-defineProps<{
-  userName?: string
-}>()
+
 </script>
 
 <template>
   <div class="account-zone user-panel">
     <img class="avatar" src="/src/assets/Images/avatar.png" alt="avatar">
     <div class="account-name">
-      <span>{{ userName ?? 'User One' }}</span>
+      <span>{{ 'User One' }}</span>
     </div>
   </div>
 </template>

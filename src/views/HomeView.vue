@@ -14,22 +14,8 @@ import LoginModal from '../components/modals/LoginModal.vue'
 import RegisterModal from '../components/modals/RegisterModal.vue'
 import BuyModal from '../components/modals/BuyModal.vue'
 
-type ActiveModal = 'login' | 'register' | 'buy' | null
-const activeModal = ref<ActiveModal>(null)
+import { openModal, activeModal } from '@/assets/scripts/modal.ts'
 
-function openModal(name: ActiveModal) {
-  activeModal.value = name
-  document.body.style.overflow = 'hidden'
-}
-
-function closeModal() {
-  activeModal.value = null
-  document.body.style.overflow = ''
-}
-
-function switchToRegister() {
-  activeModal.value = 'register'
-}
 </script>
 
 <template>
@@ -37,27 +23,17 @@ function switchToRegister() {
 
   <ModalOverlay v-if="activeModal">
     <LoginModal
-      v-if="activeModal === 'login'"
-      @close="closeModal"
-      @switch-to-register="switchToRegister"
-    />
+      v-if="activeModal === 'login'" />
     <RegisterModal
-      v-if="activeModal === 'register'"
-      @close="closeModal"
-    />
+      v-if="activeModal === 'register'" />
     <BuyModal
-      v-if="activeModal === 'buy'"
-      @close="closeModal"
-    />
+      v-if="activeModal === 'buy'" />
   </ModalOverlay>
 
   <div class="grid-container">
     <HeaderBar />
-    <GuestAccountZone
-      @login="openModal('login')"
-      @register="openModal('register')"
-    />
-    <OrderBar @buy="openModal('buy')" />
+    <GuestAccountZone />
+    <OrderBar />
     <AdvertisementBar />
   </div>
 
