@@ -1,15 +1,35 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
 import { DatePicker } from 'primevue'
 import { openModal } from '@/assets/scripts/modal';
+import { loadCities } from '@/assets/scripts/dataProvider';
+import * as Model from '@/assets/models'
+
+
+const citiesList = ref<Model.Cities[]>([])
+
+async function fetchCities() {
+  citiesList.value = await loadCities()
+  console.log(citiesList.value)
+}
+
+onMounted(() => {
+  fetchCities()
+})
+
 </script>
 
 <template>
   <div class="order-bar">
     <input list="data-list-from" placeholder="Откуда">
-    <datalist id="data-list-from"></datalist>
+    <datalist id="data-list-from">
+      <option v-for="city in citiesList" :key="city.id">{{ city.name}} — {{city.country}}</option>
+    </datalist>
 
     <input list="data-list-to" placeholder="Куда">
-    <datalist id="data-list-to"></datalist>
+    <datalist id="data-list-to">
+      <option v-for="city in citiesList" :key="city.id">{{ city.name}} — {{city.country}}</option>
+    </datalist>
 
     <DatePicker dateFormat="dd.mm.yy" placeholder="Когда" />
     <button @click="openModal('buy')">Купить</button>
