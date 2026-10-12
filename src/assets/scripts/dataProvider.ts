@@ -1,6 +1,4 @@
-import { ref } from "vue";
 import axios from "axios";
-import * as Model from '@/assets/models'
 
 export async function loadCities(){
     try{

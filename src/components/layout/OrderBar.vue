@@ -10,7 +10,6 @@ const citiesList = ref<Model.Cities[]>([])
 
 async function fetchCities() {
   citiesList.value = await loadCities()
-  console.log(citiesList.value)
 }
 
 onMounted(() => {
