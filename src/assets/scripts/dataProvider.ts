@@ -11,3 +11,13 @@ export async function loadCities(){
         return []
     }
 }
+
+export async function loadReviews() {
+    try{
+        const response = await axios.get('/api/reviews')
+        return response.data
+    } catch (error){
+        console.log(`Ошибка получения данных с сервера: ${error}`)
+        return []
+    }
+}

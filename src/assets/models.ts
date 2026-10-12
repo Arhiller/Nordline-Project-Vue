@@ -9,12 +9,10 @@ export interface Users{
 }
 
 export interface Reviews{
-    readonly id: number,
-    userId?: number,
-    flightId: number,
     rating: number,
     comment: string,
     createdAt: Date
+    fullName: string,
 }
 
 export interface Flights{
