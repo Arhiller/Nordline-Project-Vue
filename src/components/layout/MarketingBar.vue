@@ -11,6 +11,18 @@ async function fetchRevies() {
   reviewsList.value = await loadReviews()
 }
 
+function formatDate(date: any) {
+  const dateObj = new Date(date);
+  
+  return dateObj.toLocaleString('ru-RU', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+}
+
 onMounted(() => {
   fetchRevies()
 })
@@ -24,7 +36,7 @@ onMounted(() => {
                 <div class="user-info-meta">
                     <div class="user-name-row">
                         <span class="username">{{ review.fullName }}</span>
-                        <span class="review-date">{{ review.createdAt }}</span>
+                        <span class="review-date">{{ formatDate( review.createdAt) }}</span>
                     </div>
                     <RatingStar :rating="review.rating" />
                 </div>
