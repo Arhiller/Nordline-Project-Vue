@@ -2,6 +2,8 @@
 import {onMounted, ref} from 'vue'
 import * as Model from '@/assets/models';
 import { loadReviews } from '@/assets/scripts/dataProvider';
+import ratingStar from './ratingStar.vue';
+import RatingStar from './ratingStar.vue';
 
 const reviewsList = ref<Model.Reviews[]>([])
 
@@ -24,9 +26,7 @@ onMounted(() => {
                         <span class="username">{{ review.fullName }}</span>
                         <span class="review-date">{{ review.createdAt }}</span>
                     </div>
-                    <div class="stars">
-                      {{ review.rating }}
-                    </div>
+                    <RatingStar :rating="review.rating" />
                 </div>
             </div>
             <div class="text-review">
@@ -102,11 +102,6 @@ onMounted(() => {
   font-family: sans-serif;
   font-size: 13px;
   color: #9ca3af;
-}
-
-.stars {
-  font-size: 14px;
-  letter-spacing: 2px;
 }
 
 .avatar {
