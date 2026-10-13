@@ -12,6 +12,7 @@ import UserAccountZone from '../components/account/UserAccountZone.vue'
 import ModalOverlay from '../components/modals/ModalOverlay.vue'
 import SettingsModal from '../components/modals/SettingsModal.vue'
 import BuyModal from '../components/modals/BuyModal.vue'
+import ReviewField from '@/components/layout/ReviewField.vue'
 
 import SettingsButton from '../components/layout/SettingsButton.vue'
 
@@ -49,9 +50,10 @@ onUnmounted(() => {
     <HeaderBar />
     <UserAccountZone />
     <OrderBar @buy="openModal('buy')" />
+    
     <AdvertisementBar />
   </div>
-
+  <ReviewField />
   <MarketingBar />
   <FooterBar />
 </template>
