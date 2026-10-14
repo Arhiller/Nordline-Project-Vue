@@ -26,7 +26,7 @@ const handleFormSubmit = async () => {
   const success = await submitData(registerData.value);
   
   if (success) {
-    alert("Ура! Регистрация на бэкенде прошла успешно.");
+    closeModal()
   } else {
     console.log("Регистрация не удалась (ошибка валидации или сервера)");
   }
