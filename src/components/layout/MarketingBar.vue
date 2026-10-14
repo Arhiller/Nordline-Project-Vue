@@ -2,8 +2,8 @@
 import {onMounted, ref} from 'vue'
 import * as Model from '@/assets/models';
 import { loadReviews } from '@/assets/scripts/dataProvider';
-import ratingStar from './ratingStar.vue';
-import RatingStar from './ratingStar.vue';
+import ratingStar from './RatingStar.vue';
+import RatingStar from './RatingStar.vue';
 
 const reviewsList = ref<Model.Reviews[]>([])
 
