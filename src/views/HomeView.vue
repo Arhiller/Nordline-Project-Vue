@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 import HeaderBar from '../components/layout/HeaderBar.vue'
 import OrderBar from '../components/layout/OrderBar.vue'
@@ -15,7 +15,11 @@ import RegisterModal from '../components/modals/RegisterModal.vue'
 import BuyModal from '../components/modals/BuyModal.vue'
 
 import { openModal, activeModal } from '@/assets/scripts/modal.ts'
+import { logout } from '@/assets/scripts/auth.ts'
 
+onMounted(() => {
+  logout()
+})
 </script>
 
 <template>

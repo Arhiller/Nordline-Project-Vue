@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import {user} from '@/assets/scripts/auth'
+
 
 </script>
 
@@ -6,7 +8,7 @@
   <div class="account-zone user-panel">
     <img class="avatar" src="/src/assets/Images/avatar.png" alt="avatar">
     <div class="account-name">
-      <span>{{ 'User One' }}</span>
+      <span>{{ user?.fullName}}</span>
     </div>
   </div>
 </template>

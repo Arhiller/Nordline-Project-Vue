@@ -1,11 +1,10 @@
 export interface Users{
-    readonly id: number,
+    id: number,
     email: string,
-    passwordHash: string,
     role: string,
     fullName: string,
     phone: string,
-    createdAt: Date
+    createdAt: string
 }
 
 export interface Reviews{
