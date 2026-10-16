@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import {user} from '@/assets/scripts/auth'
+import { openModal } from '@/assets/scripts/modal';
 
 
 </script>
 
 <template>
-  <div class="account-zone user-panel">
+  <div class="account-zone user-panel" @click="openModal('profile')">
     <img class="avatar" src="/src/assets/Images/avatar.png" alt="avatar">
     <div class="account-name">
       <span>{{ user?.fullName}}</span>

@@ -1,5 +1,7 @@
 import axios from "axios";
 import * as Login from '@/components/modals/LoginModal.vue'
+import * as Model from '@/assets/models'
+import { ref } from "vue";
 import {token, role, user} from '@/assets/scripts/auth'
 
 interface CorrectRegisterForm {
@@ -19,6 +21,12 @@ export interface LoginResponse {
         phone: string;
         createdAt: string;
     };
+}
+
+interface Review {
+    userId: number,
+    rating: number,
+    comment: string
 }
 
 
@@ -53,6 +61,12 @@ export async function registerUser(regData: CorrectRegisterForm) {
     }
 }
 
+export const reviewsList = ref<Model.Reviews[]>([])
+
+export async function fetchReview() {
+  reviewsList.value = await loadReviews()
+}
+
 export async function loginUser(loginData: Login.LoginRequest) {
   try {
     const response = await axios.post('/api/user/login', loginData);
@@ -68,4 +82,13 @@ export async function loginUser(loginData: Login.LoginRequest) {
     console.log(error);
     return false;
   }
+}
+
+export async function publishReview(reviewData: Review) {
+    try{
+        const response = await axios.post('api/review', reviewData)
+        return response.data
+    } catch(error){
+        console.log(error)
+    }
 }

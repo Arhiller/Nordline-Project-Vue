@@ -31,7 +31,7 @@ function showDelete() {
       <div class="theme-settings" v-if="activeSection === 'theme'">
         <h2>Настройки оформления</h2>
         <button id="light" @click="setTheme('light')">Светлая тема</button>
-        <button id="dark" @click="setTheme('dark')">Черная тема</button>
+        <button id="dark" @click="setTheme('dark')">Темная тема</button>
         <button id="system" @click="setTheme('system')">Системная тема</button>
       </div>
 
@@ -44,7 +44,6 @@ function showDelete() {
 </template>
 
 <style scoped>
-/* базовые стили окна */
 .settings-modal {
   display: grid;
   grid-template-columns: 30% auto;

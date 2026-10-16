@@ -1,15 +1,7 @@
 <script setup lang="ts">
 import {onMounted, ref} from 'vue'
-import * as Model from '@/assets/models';
-import { loadReviews } from '@/assets/scripts/dataProvider';
-import ratingStar from './RatingStar.vue';
 import RatingStar from './RatingStar.vue';
-
-const reviewsList = ref<Model.Reviews[]>([])
-
-async function fetchRevies() {
-  reviewsList.value = await loadReviews()
-}
+import { reviewsList, fetchReview } from '@/assets/scripts/dataProvider';
 
 function formatDate(date: any) {
   const dateObj = new Date(date);
@@ -24,13 +16,13 @@ function formatDate(date: any) {
 }
 
 onMounted(() => {
-  fetchRevies()
+  fetchReview()
 })
 
 </script>
 <template>
   <div class="marketing-bar" data-aos="fade-up" data-aos-once="false">
-    <div class="review-card" v-for="review in reviewsList" :key="review.fullName">
+    <div class="review-card" v-for="(review, id) in reviewsList" :key="id">
             <div class="user-container">
                 <img class="avatar" src="../../assets/Images/avatar.png" alt="Avatar">
                 <div class="user-info-meta">

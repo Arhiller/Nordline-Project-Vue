@@ -4,8 +4,8 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import HeaderBar from '../components/layout/HeaderBar.vue'
 import OrderBar from '../components/layout/OrderBar.vue'
 import AdvertisementBar from '../components/layout/AdvertisementBar.vue'
-import MarketingBar from '../components/layout/MarketingBar.vue'
 import FooterBar from '../components/layout/FooterBar.vue'
+import MarketingBar from '@/components/layout/MarketingBar.vue'
 
 import UserAccountZone from '../components/account/UserAccountZone.vue'
 
@@ -15,6 +15,7 @@ import BuyModal from '../components/modals/BuyModal.vue'
 import ReviewField from '@/components/layout/ReviewField.vue'
 
 import SettingsButton from '../components/layout/SettingsButton.vue'
+import ProfileModal from '@/components/modals/ProfileModal.vue'
 
 import { activeModal, openModal, closeModal } from '@/assets/scripts/modal.ts'
 import {theme, onSystemChanged, applyTheme, setTheme, mql} from '@/assets/scripts/theme.ts'
@@ -42,6 +43,8 @@ onUnmounted(() => {
       v-if="activeModal === 'settings'" />
     <BuyModal
       v-if="activeModal === 'buy'" />
+    <ProfileModal 
+      v-if="activeModal === 'profile'" />
   </ModalOverlay>
 
   <div class="grid-container">
