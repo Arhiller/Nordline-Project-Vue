@@ -2,35 +2,42 @@
 import { onMounted, ref } from 'vue';
 import { DatePicker } from 'primevue'
 import { openModal } from '@/assets/scripts/modal';
-import { loadCities } from '@/assets/scripts/dataProvider';
-import * as Model from '@/assets/models'
+import { loadAirports, loadCities } from '@/assets/scripts/dataProvider';
+import { airportsList, citiesList } from '@/assets/scripts/buy';
+import { buyForm } from '@/assets/scripts/buy';
 
 
-const citiesList = ref<Model.Cities[]>([])
+
 
 async function fetchCities() {
   citiesList.value = await loadCities()
 }
 
+async function fetchAirports() {
+  airportsList.value = await loadAirports()
+  console.log(airportsList.value)
+}
+
 onMounted(() => {
   fetchCities()
+  fetchAirports()
 })
 
 </script>
 
 <template>
   <div class="order-bar">
-    <input list="data-list-from" placeholder="Откуда">
+    <input list="data-list-from" placeholder="Откуда" v-model="buyForm.cityFrom">
     <datalist id="data-list-from">
-      <option v-for="city in citiesList" :key="city.id">{{ city.name}} — {{city.country}}</option>
+      <option v-for="city in citiesList" :value="city.name" :key="city.id">{{ city.name}} — {{city.country}}</option>
     </datalist>
 
-    <input list="data-list-to" placeholder="Куда">
+    <input list="data-list-to" placeholder="Куда" v-model="buyForm.cityTo">
     <datalist id="data-list-to">
-      <option v-for="city in citiesList" :key="city.id">{{ city.name}} — {{city.country}}</option>
+      <option v-for="city in citiesList" :value="city.name" :key="city.id">{{ city.name}} — {{city.country}}</option>
     </datalist>
 
-    <DatePicker dateFormat="dd.mm.yy" placeholder="Когда" />
+    <DatePicker dateFormat="dd.mm.yy" placeholder="Когда" v-model="buyForm.date"/>
     <button @click="openModal('buy')">Купить</button>
   </div>
 </template>

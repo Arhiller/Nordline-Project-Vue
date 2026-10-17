@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { closeModal } from '@/assets/scripts/modal';
 import { logout } from '@/assets/scripts/auth';
+import { user } from '@/assets/scripts/auth';
+import { formatDate } from '@/assets/scripts/dateFormatter';
 </script>
 <template>
     <div class="profile-modal">
@@ -9,14 +11,14 @@ import { logout } from '@/assets/scripts/auth';
         </div>
 
         <div class="profile-header">
-            <div class="avatar-placeholder"></div>
-            <div class="username-placeholder"></div>
+            <img src="../../assets/Images/avatar.png" class="avatar-placeholder">
+            <div class="username-placeholder">{{ user?.email }} ({{ user?.role }})</div>
         </div>
 
         <div class="profile-info-lines">
-          <div class="info-line"></div>
-          <div class="info-line"></div>
-          <div class="info-line"></div>
+          <div class="info-line">{{ user?.fullName }}</div>
+          <div class="info-line">{{ user?.phone }}</div>
+          <div class="info-line">{{ formatDate(user?.createdAt) }}</div>
         </div>
 
         <div class="profile-actions">
@@ -113,6 +115,8 @@ import { logout } from '@/assets/scripts/auth';
   height: 36px;
   border: 1px solid var(--border-strong);
   border-radius: var(--btn-radius);
+  padding: 5px;
+  font-size: 22px;
 }
 
 .info-line {
@@ -120,6 +124,8 @@ import { logout } from '@/assets/scripts/auth';
   height: 40px;
   border: 1px solid var(--border-strong);
   border-radius: var(--btn-radius);
+  padding: 5px;
+  font-size: 22px;
 }
 
 .btn {

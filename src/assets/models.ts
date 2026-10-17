@@ -26,7 +26,7 @@ export interface Flights{
 }
 
 export interface Airports{
-    readonly id: number,
+    id: number,
     code: string,
     name: string,
     cityId: number
