@@ -1,5 +1,25 @@
+<script setup>
+import { closeModal } from '@/assets/scripts/modal';
+import { onMounted, onUnmounted } from 'vue';
+
+const handleEsc = (event) => {
+  if(event.key === 'Escape'){
+    closeModal()
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', handleEsc)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleEsc)
+})
+
+</script>
+
 <template>
-  <div class="modal-overlay">
+  <div class="modal-overlay" @click.self="closeModal">
     <slot />
   </div>
 </template>
