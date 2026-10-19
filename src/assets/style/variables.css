@@ -85,7 +85,7 @@
   --btn-secondary-bg-active: #f5b25e;
   --btn-secondary-text: #2f2d2a;
 
-  --btn-neutral-bg: #f7f1e6;
+  --btn-neutral-bg: #5c5c5c;
   --btn-neutral-bg-hover: #efe7d9;
   --btn-neutral-bg-active: #e6dfd3;
   --btn-neutral-text: #4a4a4a;
@@ -179,7 +179,18 @@
   --nl-user-panel-text-color-initials: #3d3b38;
 
   /* Стили */
-  --milk-color: #FDFFF5
+  --milk-color: #FDFFF5;
+
+  /* Отзывы */
+  --review-bg-main: #fcf8f5;
+  --review-border-input: #e0d0c5;
+  --review-text-primary: #2c2520;
+  --review-text-placeholder: #a3958c;
+  --review-star-empty: #d1c7bd;
+  --review-star-filled: #ffb800;
+  --review-btn-bg: #1e1625;
+  --review-btn-text: #ffffff;
+  --review-btn-hover: #32253d;
 }
 
 
@@ -190,6 +201,19 @@
   --bg-base: #191d2b;
   --bg-strong: #13161f;
   --bg-muted: #242a3c;
+
+  /* Отзывы */
+  --review-bg-main: #181d28;
+  --review-border-input: #2d3545;
+  --review-text-primary: #f0f3f8;
+  --review-text-placeholder: #6a768d;
+  --review-star-empty: #3a4456;
+  --review-star-filled: #ffb800;
+  --review-btn-bg: #f0f3f8;
+  --review-btn-text: #11141a;
+  --review-btn-hover: #ffffff;
+
+
 
   /* Поверхности */
   --surface-color: #222838;

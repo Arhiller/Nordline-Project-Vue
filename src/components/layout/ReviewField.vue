@@ -24,6 +24,16 @@ async function sendReview() {
     return;
   }
 
+  if(!rating.value){
+    alert("Поставьте оценку")
+    return
+  }
+
+  if(!textReview.value){
+    alert("Введите текст отзыва")
+    return
+  }
+
   const newReview: Review = {
     userId: user.value.id,
     rating: rating.value,
@@ -40,9 +50,9 @@ async function sendReview() {
 </script>
 
 <template>
-    <form data-aos="fade-up" data-aos-once="false" class="review-form" style="background-color: #ffffff; padding: 20px; border-radius: 8px; margin-bottom: 20px;"
+    <form data-aos="fade-up" data-aos-once="false" class="review-form"
     @submit.prevent>
-    <h3 style="margin-top: 0; color: #2D2C42;">Оставить отзыв</h3>
+    <h3 style="margin-top: 0; color: var(--review-text-primary);">Оставить отзыв</h3>
     
     <div class="rating-stars" style="margin-bottom: 15px;" @mouseleave="hoveringRating = 0">
       <span v-for="star in 5" :key="star" class="star" :class="{'is-active': star <= (hoveringRating || rating)}"
@@ -54,12 +64,11 @@ async function sendReview() {
         rows="4" 
         placeholder="Оставляя отзыв, вы соглашаетесь соблюдать правила компании, условия пользовательского соглашения и политику конфиденциальности." 
         required
-        style="width: 100%; box-sizing: border-radius; padding: 10px; border: 1px solid #ccc; border-radius: 4px; resize: vertical; font-family: inherit;"
       ></textarea>
     </div>
 
     <div style="text-align: right;">
-      <button @click="sendReview" type="submit" style="background-color: #2D2C42; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">
+      <button @click="sendReview" type="submit" class="btn-primary">
         Отправить отзыв
       </button>
     </div>
@@ -68,6 +77,25 @@ async function sendReview() {
 
 <style scoped>
 
+div textarea{
+  background: var(--review-bg-main);
+  border: 2px solid var(--review-border-input);
+  width: 100%; 
+  box-sizing: none;
+  border-radius: 4px; 
+  padding: 10px; 
+  border-radius: 4px;
+  resize: vertical; 
+  font-family: inherit;
+}
+
+.review-form{
+  background: var(--review-bg-main);
+  margin: 10px;
+  padding: 5px;
+  color: var(--review-text-primary);
+  border-radius: 10px;
+}
 .rating-stars {
   display: inline-flex;
   gap: 4px;
@@ -76,7 +104,7 @@ async function sendReview() {
 }
 
 .star {
-  color: #ccc;
+  color: var(--review-star-empty);
   transition: color 0.1s ease;
   font-size: 24px; 
   cursor: pointer;
@@ -84,6 +112,26 @@ async function sendReview() {
 }
 
 .star.is-active {
-  color: #ffcc00;
+  color: var(--review-star-filled);
+}
+
+.btn-primary{
+  color: var(--review-btn-text);
+  margin: 10px;
+  padding: 5px;
+  height: 25%;
+  width: 10%;
+  background: var(--review-btn-bg);
+  transition: all 0.3s ease-in-out;
+  border: none;
+}
+
+.btn-primary:hover{
+  transform: scale(1.05);
+  background: var(--review-btn-hover);
+}
+
+.btn-primary:active{
+  transform: scale(0.95);
 }
 </style>

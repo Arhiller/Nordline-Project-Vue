@@ -141,10 +141,29 @@ import { formatDate } from '@/assets/scripts/dateFormatter';
 
 .btn-secondary{
     grid-column: 2;
+    background: var(--accent-2);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-secondary:hover{
+  transform: scale(1.05);
+}
+
+.btn-secondary:active{
+  transform: scale(0.95);
 }
 
 .btn-primary {
-  background-color: var(--btn-primary-bg);
+  background-color: var(--btn-danger-bg);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary:hover{
+  background: var(--btn-danger-bg-hover);
+}
+
+.btn-primary:active{
+  background: var(--btn-danger-bg-active);
 }
 
 .btn:hover{

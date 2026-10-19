@@ -9,6 +9,7 @@ onMounted(() => {
   fetchReview()
 })
 
+
 </script>
 <template>
   <div class="marketing-bar" data-aos="fade-up" data-aos-once="false" v-if="reviewsList.length > 0">
@@ -49,7 +50,7 @@ onMounted(() => {
   flex-direction: column;
   gap: 16px; 
   
-  background-color: #ffffff; 
+  background-color: var(--review-bg-main); 
   border-radius: 12px; 
   padding: 24px;
   
@@ -89,13 +90,13 @@ onMounted(() => {
   font-family: sans-serif;
   font-size: 18px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--review-text-primary);
 }
 
 .review-date {
   font-family: sans-serif;
   font-size: 13px;
-  color: #9ca3af;
+  color: var(--review-btn-test);
 }
 
 .avatar {
@@ -103,13 +104,13 @@ onMounted(() => {
   height: 56px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #e5e7eb;
+  border: 2px solid var(--review-btn-hover);
 }
 
 .text-review {
   font-family: sans-serif;
   font-size: 15px;
   line-height: 1.6;
-  color: #4b5563;
+  color: var(--review-text-primary);
 }
 </style>

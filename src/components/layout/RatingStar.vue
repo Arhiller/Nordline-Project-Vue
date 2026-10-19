@@ -18,15 +18,15 @@ withDefaults(defineProps<Props>(), {
 .rating-stars {
   display: flex;
   gap: 4px;
-  font-size: 24px; /* Размер звезд */
+  font-size: 24px;
 }
 
 .star {
-  color: #ccc; /* Серый цвет по умолчанию для пустых звезд */
-  transition: color 0.2s ease;
+  color: var(--review-star-empty);
+    transition: color 0.2s ease;
 }
 
 .star--filled {
-  color: #ffca28; /* Желтый цвет для закрашенных звезд */
+  color: var(--review-star-filled);
 }
 </style>
