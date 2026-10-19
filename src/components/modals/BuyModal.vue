@@ -3,7 +3,9 @@ import { closeModal } from '@/assets/scripts/modal';
 import { buyForm, generatePNR, getRandomInt } from '@/assets/scripts/buy';
 import { user } from '@/assets/scripts/auth';
 import { citiesList, airportsList } from '@/assets/scripts/buy';
+import { buyBookings, type BookingResponse } from '@/assets/scripts/dataProvider';
 
+const fixedPrice = 10000
 
 async function handlePayment() {
   if(buyForm.passport === '') {
@@ -27,6 +29,11 @@ async function handlePayment() {
   const departureCity = citiesList.value.find(c => c.name === buyForm.cityFrom);
   const arrivalCity = citiesList.value.find(c => c.name === buyForm.cityTo);
 
+  if(departureCity === arrivalCity){
+    alert("Выбраны одикановые города")
+    return
+  }
+
   if (!departureCity || !arrivalCity) {
     alert("Пожалуйста, выберите корректные города из списка");
     return;
@@ -44,54 +51,93 @@ async function handlePayment() {
   });
 
 
-  const fixedPrice = 10000
-
-  const bookingData = {
-    userId: user.value?.id,
+  if (!user.value?.id || !user.value.fullName) {
+    alert("Ой, похоже вы не авторизованы");
+  } else{
+    const bookingData = {
+    userId: user.value.id,
     flightId: randomFlightId,
     seatId: randomSeatId,
     bookingCode: randomCode,
-    passangerName: user.value?.fullName,
-    passangerPassport: buyForm.passport,
+    passengerName: user.value?.fullName,
+    passengerPassport: buyForm.passport,
     price: fixedPrice
+   } 
+
+    const res = await buyBookings(bookingData)
+
+
+    if(res?.success){
+        const formattedDate = new Date(buyForm.date).toLocaleDateString('ru-RU', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      });
+  
+    const arrivalDate = new Date(buyForm.date);
+    arrivalDate.setHours(arrivalDate.getHours() + 3);
+  
+    const formattedArrivalDate = arrivalDate.toLocaleDateString('ru-RU', {
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+
+
+        const message = `
+        🎉 Билет успешно оформлен!
+
+        ✈️ Маршрут: ${departureCity.name} → ${arrivalCity.name}
+        🛫 Вылет из: ${departureAirport?.name} (${departureAirport?.code}) в ${formattedDepartureDate}
+        🛬 Прилет в: ${arrivalAirport?.name} (${arrivalAirport?.code}) около ${formattedArrivalDate}
+
+        🎫 Номер рейса: NL-${randomFlightId}77
+        💺 Ваше место: ${randomSeatId}
+        🔑 Код бронирования (PNR): ${res.bookingCode}
+        👤 Пассажир: ${user.value?.fullName}
+        💳 Сумма к оплате: ${fixedPrice.toLocaleString()} руб.
+
+        Приятного полёта с Nordline!
+          `;
+
+        const messageData = {
+          title: "Билет успешно оформлен!",
+          bookingCode: res.bookingCode,
+          flightNumber: `NL-${randomFlightId}77`,
+          seat: randomSeatId,
+
+          route: {
+            from: departureCity.name,
+            to: arrivalCity.name
+          },
+
+          departure: {
+            airport: departureAirport?.name || '',
+            code: departureAirport?.code || '',
+            date: formattedDepartureDate
+          },
+
+          arrival: {
+            airport: arrivalAirport?.name || '',
+            code: arrivalAirport?.code || '',
+            date: formattedArrivalDate
+          },
+
+          passengerName: user.value?.fullName || '',
+          price: fixedPrice, // Передаем чистым числом, форматировать будем в самом div
+
+          wishes: "Приятного полёта с Nordline!"
+        };
+
+        console.log(message)
+
+        buyForm.passport = ''
+        buyForm.cardNumber = ''
+        buyForm.cityFrom = ''
+        buyForm.cityTo = ''
+        buyForm.date = null
+      }
+    }
   }
-
-  console.log(bookingData)
-
-
-  const formattedDate = new Date(buyForm.date).toLocaleDateString('ru-RU', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric'
-  });
-
-  const arrivalDate = new Date(buyForm.date);
-  arrivalDate.setHours(arrivalDate.getHours() + 3);
-
-  const formattedArrivalDate = arrivalDate.toLocaleDateString('ru-RU', {
-    hour: '2-digit',
-    minute: '2-digit'
-  });
-
-
-  const message = `
-🎉 Билет успешно оформлен!
-
-✈️ Маршрут: ${departureCity.name} → ${arrivalCity.name}
-🛫 Вылет из: ${departureAirport?.name} (${departureAirport?.code}) в ${formattedDepartureDate}
-🛬 Прилет в: ${arrivalAirport?.name} (${arrivalAirport?.code}) около ${formattedArrivalDate}
-
-🎫 Номер рейса: NL-${randomFlightId}77
-💺 Ваше место: ${randomSeatId}
-🔑 Код бронирования (PNR): ${randomCode}
-👤 Пассажир: ${user.value?.fullName}
-💳 Сумма к оплате: ${fixedPrice.toLocaleString()} руб.
-
-Приятного полёта с Nordline!
-  `;
-
-  console.log(message)
-}
 </script>
 
 <template>
@@ -107,7 +153,7 @@ async function handlePayment() {
         <input type="text" placeholder="Срок действия ММ/ГГ">
         <input type="text" placeholder="CVC/CVV">
       </div>
-      <p>Итого к оплате: X XXX руб.</p>
+      <p>Итого к оплате: {{ fixedPrice.toLocaleString('ru-RU') }} ₽</p>
       <div id="buy-button-zone">
         <button type="submit">Оплатить</button>
         <button @click="closeModal">Отмена</button>

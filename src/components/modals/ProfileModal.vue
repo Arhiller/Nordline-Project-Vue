@@ -22,7 +22,7 @@ import { formatDate } from '@/assets/scripts/dateFormatter';
         </div>
 
         <div class="profile-actions">
-          <button class="btn btn-secondary">История</button>
+          <button class="btn btn-secondary">Уведомения</button>
           <button class="btn btn-primary" @click="logout">Выйти</button>
         </div>
   </div>
@@ -145,5 +145,13 @@ import { formatDate } from '@/assets/scripts/dateFormatter';
 
 .btn-primary {
   background-color: var(--btn-primary-bg);
+}
+
+.btn:hover{
+  transform: scale(1.05);
+}
+
+.btn:active{
+  transform: scale(0.95);
 }
 </style>

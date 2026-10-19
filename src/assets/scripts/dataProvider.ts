@@ -29,6 +29,22 @@ interface Review {
     comment: string
 }
 
+interface BookingRequest {
+    userId: number,
+    flightId: number,
+    seatId: number,
+    bookingCode: string,
+    passengerName: string,
+    passengerPassport: string,
+    price: number
+}
+
+export interface BookingResponse {
+    success: boolean,
+    message: string,
+    bookingCode?: string,
+    error?: string
+}
 
 
 export async function loadCities(){
@@ -100,5 +116,20 @@ export async function publishReview(reviewData: Review) {
         return response.data
     } catch(error){
         console.log(error)
+    }
+}
+
+export async function buyBookings(bookingData: BookingRequest) {
+    try{
+        const response = await axios.post<BookingResponse>('api/bookings', bookingData)
+        if(response.data.success){
+            return response.data
+        }
+    } catch(error: any){
+        if(error.response && error.response.data){
+            console.log(`Ошибка бронирования: ${error.response.data.error || error.response.data.message}`)
+        } else{
+            console.log("Ошибка сервера")
+        }
     }
 }

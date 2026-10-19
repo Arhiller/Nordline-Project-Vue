@@ -11,7 +11,7 @@ onMounted(() => {
 
 </script>
 <template>
-  <div class="marketing-bar" data-aos="fade-up" data-aos-once="false">
+  <div class="marketing-bar" data-aos="fade-up" data-aos-once="false" v-if="reviewsList.length > 0">
     <div class="review-card" v-for="(review, id) in reviewsList" :key="id">
             <div class="user-container">
                 <img class="avatar" src="../../assets/Images/avatar.png" alt="Avatar">
