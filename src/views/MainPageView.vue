@@ -16,6 +16,7 @@ import ReviewField from '@/components/layout/ReviewField.vue'
 
 import SettingsButton from '../components/layout/SettingsButton.vue'
 import ProfileModal from '@/components/modals/ProfileModal.vue'
+import BuyHistory from '@/components/modals/BuyHistory.vue'
 
 import { activeModal, openModal, closeModal } from '@/assets/scripts/modal.ts'
 import {theme, onSystemChanged, applyTheme, setTheme, mql} from '@/assets/scripts/theme.ts'
@@ -45,6 +46,8 @@ onUnmounted(() => {
       v-if="activeModal === 'buy'" />
     <ProfileModal 
       v-if="activeModal === 'profile'" />
+    <BuyHistory 
+      v-if="activeModal === 'history'"/>
   </ModalOverlay>
 
   <div class="grid-container">

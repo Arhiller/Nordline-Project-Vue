@@ -46,6 +46,15 @@ export interface BookingResponse {
     error?: string
 }
 
+export interface BookingsHistory{
+    id: number,
+    bookingCode: string,
+    passengerName: string,
+    price: number,
+    status: string,
+    createdAt: string
+}
+
 
 export async function loadCities(){
     try{
@@ -131,5 +140,15 @@ export async function buyBookings(bookingData: BookingRequest) {
         } else{
             console.log("Ошибка сервера")
         }
+    }
+}
+
+export async function getBookingsHistory(id: number) {
+    try{
+        const response = await axios.get<BookingsHistory[]>(`api/bookings/user/${id}`)
+        return response.data
+    } catch(error){
+        console.log("Ошибка получения истории покупок: " + error)
+        return []
     }
 }

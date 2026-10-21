@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { closeModal } from '@/assets/scripts/modal';
+import { closeModal, switchToHistory } from '@/assets/scripts/modal';
 import { logout } from '@/assets/scripts/auth';
 import { user } from '@/assets/scripts/auth';
 import { formatDate } from '@/assets/scripts/dateFormatter';
@@ -22,7 +22,7 @@ import { formatDate } from '@/assets/scripts/dateFormatter';
         </div>
 
         <div class="profile-actions">
-          <button class="btn btn-secondary">Уведомения</button>
+          <button class="btn btn-secondary" @click="switchToHistory">История покупок</button>
           <button class="btn btn-primary" @click="logout">Выйти</button>
         </div>
   </div>

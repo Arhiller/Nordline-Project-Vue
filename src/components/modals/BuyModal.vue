@@ -123,7 +123,7 @@ async function handlePayment() {
           },
 
           passengerName: user.value?.fullName || '',
-          price: fixedPrice, // Передаем чистым числом, форматировать будем в самом div
+          price: fixedPrice,
 
           wishes: "Приятного полёта с Nordline!"
         };

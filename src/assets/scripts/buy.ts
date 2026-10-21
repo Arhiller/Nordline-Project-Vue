@@ -1,5 +1,6 @@
 import { ref, reactive } from "vue";
 import * as Model from '@/assets/models'
+import { type BookingsHistory } from "./dataProvider";
 
 export const citiesList = ref<Model.Cities[]>([])
 export const airportsList = ref<Model.Airports[]>([])
@@ -19,3 +20,4 @@ export const getRandomInt = (min: number, max: number) => {
 export const generatePNR = () => {
     return Math.random().toString(36).substring(2, 8).toUpperCase()
 }
+
