@@ -1,6 +1,6 @@
 import {ref} from 'vue'
 
-export type ActiveModal = 'settings' | 'buy' | 'register' | 'login' | 'profile' | 'history' | null
+export type ActiveModal = 'settings' | 'buy' | 'register' | 'login' | 'profile' | 'history' | 'bookingInfo' | null
 export const activeModal = ref<ActiveModal>(null)
 
 export function openModal(name: ActiveModal) {
@@ -19,4 +19,8 @@ export function switchToRegister() {
 
 export function switchToHistory(){
   activeModal.value = 'history'
+}
+
+export function switchToBookingInfo(){
+  activeModal.value = 'bookingInfo'
 }

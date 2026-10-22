@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { closeModal } from '@/assets/scripts/modal';
+import { closeModal, activeModal } from '@/assets/scripts/modal';
 import { buyForm, generatePNR, getRandomInt } from '@/assets/scripts/buy';
 import { user } from '@/assets/scripts/auth';
 import { citiesList, airportsList } from '@/assets/scripts/buy';
@@ -128,7 +128,8 @@ async function handlePayment() {
           wishes: "Приятного полёта с Nordline!"
         };
 
-        console.log(message)
+        sessionStorage.setItem('booking_message', JSON.stringify(messageData));
+        activeModal.value = 'bookingInfo';
 
         buyForm.passport = ''
         buyForm.cardNumber = ''

@@ -15,7 +15,6 @@ async function fetchCities() {
 
 async function fetchAirports() {
   airportsList.value = await loadAirports()
-  console.log(airportsList.value)
 }
 
 onMounted(() => {

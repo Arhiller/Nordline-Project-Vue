@@ -20,6 +20,7 @@ import BuyHistory from '@/components/modals/BuyHistory.vue'
 
 import { activeModal, openModal, closeModal } from '@/assets/scripts/modal.ts'
 import {theme, onSystemChanged, applyTheme, setTheme, mql} from '@/assets/scripts/theme.ts'
+import BookingInfo from '@/components/modals/BookingInfo.vue'
 
 
 type Theme = 'light' | 'dark' | 'system'
@@ -48,6 +49,8 @@ onUnmounted(() => {
       v-if="activeModal === 'profile'" />
     <BuyHistory 
       v-if="activeModal === 'history'"/>
+    <BookingInfo
+      v-if="activeModal === 'bookingInfo'" />
   </ModalOverlay>
 
   <div class="grid-container">
