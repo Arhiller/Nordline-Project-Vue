@@ -1,8 +1,14 @@
 <template>
   <div class="advertisment-bar">
-    <div class="advertisment-item"></div>
-    <div class="advertisment-item"></div>
-    <div class="advertisment-item"></div>
+    <div class="advertisment-item">
+      <img src="../../assets/Images/banner1.jpg">
+    </div>
+    <div class="advertisment-item">
+      <img src="../../assets/Images/qwerty.jpg">
+    </div>
+    <div class="advertisment-item">
+      <img src="../../assets/Images/fgf.jpg">
+    </div>
   </div>
 </template>
 
@@ -14,11 +20,14 @@
   display: flex;
   gap: 20px;
   width: 100%;
+  align-items: stretch;
 }
 
 .advertisment-item {
-  flex: 1;
-  min-height: 200px;
+  flex: 1 0 200px;
+  flex-shrink: 0;
+  height: 550px;
+  overflow: hidden;
 
   background: var(--surface-color);
   border: var(--border-style);
@@ -27,6 +36,14 @@
   transition:
     transform 0.4s ease,
     box-shadow 0.4s ease;
+}
+
+img {
+    width: 100%; 
+    height: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
 }
 
 .advertisment-item:nth-child(1) {
